@@ -1,0 +1,276 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.page {
+    padding-top: 80px;
+    min-height: 100vh;
+    background: $color-bg-alt;
+}
+
+.container {
+    @include container;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+    padding-top: $spacing-xl;
+    padding-bottom: $spacing-3xl;
+
+    @include respond-to(lg) {
+        grid-template-columns: 260px 1fr;
+    }
+}
+
+// Sidebar
+.sidebar {
+    background: white;
+    border-radius: $radius-lg;
+    padding: $spacing-lg;
+    box-shadow: $shadow-sm;
+    height: fit-content;
+    position: sticky;
+    top: 80px;
+
+    @media (max-width: #{$bp-lg - 1px}) {
+        position: static;
+    }
+}
+
+.sidebarHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $spacing-lg;
+}
+
+.sidebarTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $color-dark;
+}
+
+.clearBtn {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: $color-text-light;
+    cursor: pointer;
+    transition: color $transition-fast;
+
+    &:hover {
+        color: $color-primary;
+    }
+}
+
+.filterGroup {
+    margin-bottom: $spacing-lg;
+}
+
+.filterLabel {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: $color-text-light;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: $spacing-sm;
+}
+
+.filterSelect,
+.filterInput {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    font-size: 0.85rem;
+    outline: none;
+    background: white;
+    transition: border-color $transition-fast;
+
+    &:focus {
+        border-color: $color-primary;
+    }
+}
+
+.rangeRow {
+    display: flex;
+    gap: $spacing-sm;
+}
+
+.sellBanner {
+    margin-top: $spacing-xl;
+    background: $color-primary;
+    color: white;
+    padding: $spacing-lg;
+    border-radius: $radius-lg;
+    text-align: center;
+
+    h4 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: $spacing-xs;
+    }
+
+    p {
+        font-size: 0.78rem;
+        opacity: 0.9;
+        margin-bottom: $spacing-md;
+        line-height: 1.4;
+    }
+}
+
+.sellBtn {
+    display: inline-block;
+    background: white;
+    color: $color-primary;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.55rem 1.2rem;
+    border-radius: $radius-full;
+    transition: all $transition-fast;
+
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: $shadow-md;
+    }
+}
+
+// Main grid
+.main {
+    min-width: 0;
+}
+
+.searchBarMobile {
+    margin-bottom: $spacing-lg;
+
+    @include respond-to(lg) {
+        display: none;
+    }
+}
+
+.searchInput {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1px solid $color-border;
+    border-radius: $radius-full;
+    font-size: 0.9rem;
+    outline: none;
+    background: white;
+
+    &:focus {
+        border-color: $color-primary;
+    }
+}
+
+.loading,
+.empty {
+    text-align: center;
+    padding: $spacing-4xl $spacing-xl;
+    color: $color-text-light;
+    font-size: 0.95rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+
+    @include respond-to(sm) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to(xl) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.card {
+    background: white;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    transition: all $transition-base;
+    box-shadow: $shadow-sm;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: $shadow-lg;
+    }
+}
+
+.imageWrap {
+    position: relative;
+    @include aspect-ratio(4, 5);
+    overflow: hidden;
+    background: #E8E8E8;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-slow;
+
+    .card:hover & {
+        transform: scale(1.04);
+    }
+}
+
+.noImage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #ccc;
+}
+
+.offerBadge {
+    position: absolute;
+    top: $spacing-md;
+    left: $spacing-md;
+    background: $color-accent;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 0.3rem 0.7rem;
+    border-radius: $radius-sm;
+    letter-spacing: 0.04em;
+}
+
+.cardBody {
+    padding: $spacing-md;
+}
+
+.cardTitle {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: $color-dark;
+    @include truncate(1);
+    margin-bottom: $spacing-xs;
+}
+
+.cardMeta {
+    font-size: 0.8rem;
+    color: $color-text-light;
+    margin-bottom: $spacing-sm;
+}
+
+.cardFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.price {
+    background: $color-dark;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.3rem 0.7rem;
+    border-radius: $radius-sm;
+}
+
+.location {
+    font-size: 0.72rem;
+    color: $color-text-light;
+    font-weight: 500;
+}

@@ -1,0 +1,150 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+    padding: $spacing-3xl 0;
+    background: $color-bg-alt;
+}
+
+.container {
+    @include container;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $spacing-xl;
+}
+
+.title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: $color-dark;
+}
+
+.viewAll {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $color-primary;
+    transition: opacity $transition-fast;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.loading {
+    text-align: center;
+    padding: $spacing-3xl;
+    color: $color-text-light;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+
+    @include respond-to(sm) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to(lg) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.card {
+    background: white;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    transition: all $transition-base;
+    box-shadow: $shadow-sm;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: $shadow-lg;
+    }
+}
+
+.imageWrap {
+    position: relative;
+    @include aspect-ratio(4, 5);
+    overflow: hidden;
+    background: #E8E8E8;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-slow;
+
+    .card:hover & {
+        transform: scale(1.04);
+    }
+}
+
+.noImage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: #ccc;
+}
+
+.badge,
+.badgePrice {
+    position: absolute;
+    top: $spacing-md;
+    left: $spacing-md;
+    padding: 0.3rem 0.75rem;
+    border-radius: $radius-sm;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+}
+
+.badge {
+    background: $color-accent;
+}
+
+.badgePrice {
+    background: $color-primary;
+}
+
+.info {
+    padding: $spacing-md;
+}
+
+.name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: $color-dark;
+    margin-bottom: $spacing-xs;
+    @include truncate(1);
+}
+
+.meta {
+    font-size: 0.8rem;
+    color: $color-text-light;
+    margin-bottom: $spacing-sm;
+}
+
+.tags {
+    display: flex;
+    gap: $spacing-xs;
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: $color-text-light;
+    background: $color-bg-alt;
+    padding: 0.2rem 0.5rem;
+    border-radius: $radius-sm;
+    text-transform: uppercase;
+}

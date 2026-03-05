@@ -1,0 +1,57 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+    padding: $spacing-3xl 0;
+}
+
+.container {
+    @include container;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: $color-text-light;
+    margin-bottom: $spacing-xl;
+}
+
+.grid {
+    display: flex;
+    gap: $spacing-xl;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @include respond-to(md) {
+        justify-content: flex-start;
+    }
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-lg;
+    border-radius: $radius-lg;
+    transition: all $transition-base;
+    cursor: pointer;
+    min-width: 90px;
+
+    &:hover {
+        background: $color-bg-alt;
+        transform: translateY(-2px);
+    }
+}
+
+.icon {
+    font-size: 2rem;
+}
+
+.label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $color-text;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}

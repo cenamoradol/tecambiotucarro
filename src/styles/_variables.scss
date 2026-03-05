@@ -1,0 +1,54 @@
+// Colors
+$color-primary: #1B7A2B;
+$color-primary-dark: #145F21;
+$color-primary-light: #E8F5E9;
+$color-accent: #FF6B00;
+$color-dark: #1A1A1A;
+$color-text: #333333;
+$color-text-light: #777777;
+$color-border: #E0E0E0;
+$color-bg: #FFFFFF;
+$color-bg-alt: #F5F5F5;
+$color-bg-dark: #111111;
+
+// Typography
+$font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-2xl: 3rem;
+$spacing-3xl: 4rem;
+$spacing-4xl: 6rem;
+
+// Border radius
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+$radius-full: 9999px;
+
+// Shadows
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+$shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+// Breakpoints
+$bp-sm: 576px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+$bp-2xl: 1440px;
+
+// Container
+$container-max: 1280px;
+$container-padding: 1.25rem;
+
+// Transitions
+$transition-fast: 0.15s ease;
+$transition-base: 0.25s ease;
+$transition-slow: 0.4s ease;

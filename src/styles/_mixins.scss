@@ -1,0 +1,59 @@
+@use './variables' as *;
+
+@mixin respond-to($bp) {
+    @if $bp ==sm {
+        @media (min-width: $bp-sm) {
+            @content;
+        }
+    }
+
+    @else if $bp ==md {
+        @media (min-width: $bp-md) {
+            @content;
+        }
+    }
+
+    @else if $bp ==lg {
+        @media (min-width: $bp-lg) {
+            @content;
+        }
+    }
+
+    @else if $bp ==xl {
+        @media (min-width: $bp-xl) {
+            @content;
+        }
+    }
+
+    @else if $bp ==2xl {
+        @media (min-width: $bp-2xl) {
+            @content;
+        }
+    }
+}
+
+@mixin container {
+    width: 100%;
+    max-width: $container-max;
+    margin: 0 auto;
+    padding: 0 $container-padding;
+}
+
+@mixin aspect-ratio($w, $h) {
+    aspect-ratio: #{$w} / #{$h};
+}
+
+@mixin truncate($lines: 1) {
+    @if $lines ==1 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    @else {
+        display: -webkit-box;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}

@@ -1,0 +1,57 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.footer {
+    background: $color-bg-alt;
+    border-top: 1px solid $color-border;
+    padding: $spacing-xl 0;
+}
+
+.inner {
+    @include container;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-md;
+
+    @include respond-to(md) {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.brand {
+    text-align: center;
+
+    @include respond-to(md) {
+        text-align: left;
+    }
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: $color-dark;
+}
+
+.copy {
+    font-size: 0.8rem;
+    color: $color-text-light;
+    margin-top: $spacing-xs;
+}
+
+.links {
+    display: flex;
+    gap: $spacing-lg;
+
+    a {
+        font-size: 0.8rem;
+        color: $color-text-light;
+        font-weight: 500;
+        transition: color $transition-fast;
+
+        &:hover {
+            color: $color-primary;
+        }
+    }
+}
