@@ -7,15 +7,15 @@ export default function Navbar() {
     return (
         <header className="fixed top-0 left-0 right-0 z-50 glass-panel h-20 px-4 md:px-10 flex items-center justify-between transition-all duration-300">
             {/* Logo */}
-            <div className="min-w-fit flex items-center bg-white/80 dark:bg-background-dark/80 backdrop-blur-md rounded-full px-4 py-2 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div className="min-w-fit flex items-center">
                 <Link href="/" className="flex items-center gap-3">
                     {/* Usar el logo proveído por el usuario */}
-                    <div className="relative h-10 w-32 sm:w-40">
+                    <div className="relative h-[76px] w-[200px] sm:w-[260px] flex items-center">
                         <Image
                             src="/logo.png"
                             alt="Te Cambio Tu Carro Logo"
                             fill
-                            className="object-contain"
+                            className="object-contain object-left"
                             priority
                         />
                     </div>
@@ -38,15 +38,9 @@ export default function Navbar() {
 
             {/* Navegación y Acciones (Desktop/Mobile) */}
             <div className="flex items-center gap-6 min-w-fit">
-                <nav className="hidden lg:flex items-center gap-6 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md rounded-full px-6 py-3 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <nav className="hidden lg:flex items-center">
                     <Link href="/catalogo" className="text-primary text-sm font-bold border-b-2 border-primary pb-1">
                         Vehículos
-                    </Link>
-                    <Link href="/remates" className="text-slate-900 dark:text-white text-sm font-semibold hover:text-primary transition-colors">
-                        Remate
-                    </Link>
-                    <Link href="/subastas" className="text-slate-900 dark:text-white text-sm font-semibold hover:text-primary transition-colors">
-                        Subastas
                     </Link>
                 </nav>
 

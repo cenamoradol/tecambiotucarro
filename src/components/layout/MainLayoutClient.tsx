@@ -10,7 +10,7 @@ export default function MainLayoutClient({ children }: { children: React.ReactNo
 
     return (
         <div className={`flex flex-col min-h-screen ${!isHome ? 'pt-20' : ''}`}>
-            <Navbar />
+            {!isHome && <Navbar />}
             <div className="flex-1 flex flex-col relative">
                 {children}
             </div>
@@ -18,3 +18,4 @@ export default function MainLayoutClient({ children }: { children: React.ReactNo
         </div>
     );
 }
+
