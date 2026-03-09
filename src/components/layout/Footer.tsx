@@ -1,0 +1,27 @@
+import React from 'react';
+import Link from 'next/link';
+
+export default function Footer() {
+    const currentYear = new Date().getFullYear();
+
+    return (
+        <footer className="mt-20 border-t border-slate-200 dark:border-slate-800 py-10 bg-white dark:bg-background-dark">
+            <div className="mx-auto max-w-[1400px] px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p className="text-text-muted text-sm">
+                    © {currentYear} Te Cambio Tu Carro. Todos los derechos reservados.
+                </p>
+                <div className="flex gap-6">
+                    <Link href="/terminos" className="text-text-muted hover:text-primary transition-colors text-sm font-medium">
+                        Términos
+                    </Link>
+                    <Link href="/privacidad" className="text-text-muted hover:text-primary transition-colors text-sm font-medium">
+                        Privacidad
+                    </Link>
+                    <Link href="/soporte" className="text-text-muted hover:text-primary transition-colors text-sm font-medium">
+                        Soporte
+                    </Link>
+                </div>
+            </div>
+        </footer>
+    );
+}

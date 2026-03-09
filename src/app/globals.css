@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0b6b11;
+  --color-primary-dark: #08540d;
+  --color-secondary: #FFB81C;
+  --color-accent: #fcad0a;
+  --color-background-light: #f6f8f7;
+  --color-background-dark: #102218;
+  --color-surface: #ffffff;
+  --color-text-main: #0d1b13;
+  --color-text-muted: #6F767E;
+  --color-whatsapp: #0b6b11;
+
+  --font-display: var(--font-display);
+
+  --radius-xs: 0.5rem;
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+
+  --aspect-story: 9/16;
+  --aspect-portrait: 9/16;
+}
+
+:root {
+  --background: #f6f8f7;
+  --foreground: #0d1b13;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #102218;
+    --foreground: #ffffff;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+@utility glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+@utility glass-card-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0) 100%);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
