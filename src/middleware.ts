@@ -7,10 +7,28 @@ import type { NextRequest } from 'next/server'
  */
 
 export function middleware(request: NextRequest) {
-    const { pathname } = request.nextUrl
+    const { pathname, searchParams } = request.nextUrl
 
-    // 1. Si estamos en desarrollo (localhost), permitimos ver todas las rutas
-    if (process.env.NODE_ENV === 'development') {
+    // 0. Revisar si hay un token de acceso por URL
+    const bypassToken = searchParams.get('bypass')
+    const secret = process.env.BYPASS_TOKEN || 'admin123'
+    const hasAccess = request.cookies.get('bypass_coming_soon')?.value === 'true'
+
+    if (bypassToken === secret) {
+        // Redirigir limpiando el parámetro bypass de la URL para que no sea visible
+        const url = new URL(pathname, request.url)
+        const response = NextResponse.redirect(url)
+        response.cookies.set('bypass_coming_soon', 'true', {
+            path: '/',
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 60 * 60 * 24 * 30, // 30 días
+        })
+        return response
+    }
+
+    // 1. Si estamos en desarrollo (localhost) o ya tiene la cookie, permitimos ver todas las rutas
+    if (process.env.NODE_ENV === 'development' || hasAccess) {
         return NextResponse.next()
     }
 

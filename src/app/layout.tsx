@@ -15,12 +15,17 @@ export const metadata: Metadata = {
   description: "Compra y venta de vehículos. Catálogo y Remates.",
 };
 
-export default function RootLayout({
+import { cookies } from 'next/headers';
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || '';
+  const cookieStore = await cookies();
+  const hasAccess = cookieStore.get('bypass_coming_soon')?.value === 'true' || process.env.NODE_ENV === 'development';
+  const isComingSoon = !hasAccess;
 
   return (
     <html lang="es">
@@ -43,7 +48,7 @@ export default function RootLayout({
             />
           </>
         )}
-        <MainLayoutClient>
+        <MainLayoutClient isComingSoon={isComingSoon}>
           {children}
         </MainLayoutClient>
       </body>
