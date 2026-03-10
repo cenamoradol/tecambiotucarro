@@ -42,7 +42,7 @@ export default function VehicleCard({ vehicle, viewMode = 'grid', currencySymbol
     const slug = generateSlug(vehicle.title);
 
     return (
-        <Link href={`/vehiculos/${routeId}/${slug}`} className="block w-full">
+        <Link href={`/vehiculos/${routeId}/${slug}`} className="block w-full vehicle-card-enter">
             <article className={cn(
                 "group relative bg-surface rounded-xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.05)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-300 cursor-pointer w-full",
                 viewMode === 'grid' ? "aspect-story" : "flex flex-col sm:flex-row h-auto sm:h-56 md:h-64 gap-0"

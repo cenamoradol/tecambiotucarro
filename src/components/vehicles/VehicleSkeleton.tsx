@@ -8,7 +8,7 @@ interface VehicleSkeletonProps {
 export default function VehicleSkeleton({ viewMode }: VehicleSkeletonProps) {
     if (viewMode === 'list') {
         return (
-            <div className="bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row group animate-pulse">
+            <div className="skeleton-card bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row group animate-pulse">
                 <div className="relative w-full sm:w-[320px] aspect-[4/3] sm:aspect-auto sm:h-[240px] shrink-0 bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
                     <ImageIcon className="w-12 h-12 text-slate-300 dark:text-slate-700" />
                 </div>
@@ -39,30 +39,21 @@ export default function VehicleSkeleton({ viewMode }: VehicleSkeletonProps) {
         );
     }
 
-    // Grid View Skeleton
+    // Grid View Skeleton — debe coincidir con el tamaño de VehicleCard (aspect-story)
     return (
-        <div className="bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col group animate-pulse">
-            <div className="relative aspect-[4/3] w-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+        <div className="skeleton-card relative bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm aspect-story animate-pulse">
+            {/* Imagen placeholder ocupa todo el fondo, igual que VehicleCard */}
+            <div className="absolute inset-0 w-full h-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
                 <ImageIcon className="w-12 h-12 text-slate-300 dark:text-slate-700" />
             </div>
-            <div className="p-6 flex flex-col flex-1">
-                <div className="flex justify-between items-start mb-2">
-                    <div className="h-6 w-3/4 bg-slate-200 dark:bg-slate-800 rounded"></div>
-                </div>
-                <div className="h-4 w-1/3 bg-slate-200 dark:bg-slate-800 rounded mb-6"></div>
 
-                <div className="grid grid-cols-2 gap-3 mb-6 mt-auto">
-                    {[1, 2, 3, 4].map(i => (
-                        <div key={i} className="flex items-center gap-2">
-                            <div className="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-800"></div>
-                            <div className="h-3 w-16 bg-slate-200 dark:bg-slate-800 rounded"></div>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                    <div className="h-6 w-1/3 bg-slate-200 dark:bg-slate-800 rounded"></div>
-                    <div className="h-8 w-24 bg-slate-200 dark:bg-slate-800 rounded-full"></div>
+            {/* Overlay inferior que simula el texto y precio */}
+            <div className="absolute bottom-0 left-0 right-0 p-5 space-y-3">
+                <div className="h-5 w-3/4 bg-slate-300/40 dark:bg-slate-700/40 rounded" />
+                <div className="h-4 w-1/3 bg-slate-300/30 dark:bg-slate-700/30 rounded" />
+                <div className="flex justify-between items-center pt-2">
+                    <div className="h-6 w-1/3 bg-slate-300/40 dark:bg-slate-700/40 rounded-full" />
+                    <div className="h-5 w-1/4 bg-slate-300/30 dark:bg-slate-700/30 rounded" />
                 </div>
             </div>
         </div>

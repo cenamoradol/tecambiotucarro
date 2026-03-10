@@ -1,6 +1,6 @@
 import React from 'react';
 import { Vehicle } from '@/components/vehicles/VehicleCard';
-import { Clock, Gauge, Settings, Fuel, Calendar, CheckCircle, Star, Info, MapPin } from 'lucide-react';
+import { Clock, Gauge, Settings, Fuel, Calendar, Info, MapPin } from 'lucide-react';
 import Image from 'next/image';
 import { formatPrice } from '@/api/vehicles';
 
@@ -8,11 +8,32 @@ interface VehicleInfoPanelProps {
     vehicle: Vehicle;
 }
 
+// Helper: solo renderiza un spec si tiene valor real
+function SpecCard({ icon: Icon, label, value }: { icon: any; label: string; value?: string | number | null }) {
+    if (!value && value !== 0) return null;
+    return (
+        <div className="bg-background-light dark:bg-background-dark/50 p-4 rounded-xl flex flex-col items-start gap-2 group hover:bg-[#e7f3ec] transition-colors duration-300">
+            <div className="p-2 rounded-full bg-white dark:bg-white/10 text-primary shadow-sm group-hover:scale-110 transition-transform">
+                <Icon className="w-5 h-5" />
+            </div>
+            <div>
+                <p className="text-xs text-text-muted uppercase tracking-wider font-semibold">{label}</p>
+                <p className="text-base font-bold text-text-main dark:text-white">{value}</p>
+            </div>
+        </div>
+    );
+}
+
 export default function VehicleInfoPanel({ vehicle }: VehicleInfoPanelProps) {
     const currency = vehicle.currency || 'HNL';
 
-    // Parse description if it's stored as bullet points or just use as paragraph
-    const descriptionText = vehicle.description ? vehicle.description : 'Sin descripción detallada por el vendedor.';
+    // Construir la lista de specs solo con campos que tengan valor
+    const specs = [
+        { icon: Gauge, label: 'Kilometraje', value: vehicle.mileage ? `${vehicle.mileage.toLocaleString('es-HN')} km` : null },
+        { icon: Settings, label: 'Transmisión', value: vehicle.transmission || null },
+        { icon: Fuel, label: 'Combustible', value: vehicle.fuelType || null },
+        { icon: Calendar, label: 'Año', value: vehicle.year || null },
+    ].filter(s => s.value !== null);
 
     return (
         <div className="w-full relative lg:w-[60%]">
@@ -30,96 +51,45 @@ export default function VehicleInfoPanel({ vehicle }: VehicleInfoPanelProps) {
                             <Clock className="w-4 h-4" /> Activo
                         </span>
                     </div>
-                    <h1 className="text-3xl lg:text-4xl font-bold text-text-main dark:text-white leading-tight mt-2">
-                        {vehicle.title}
-                    </h1>
-                    <div className="flex items-end gap-3 mt-1">
-                        <h2 className="text-2xl lg:text-3xl font-bold text-primary">
-                            {formatPrice(vehicle.price, currency)}
-                        </h2>
-                        {vehicle.offerPrice && (
-                            <span className="text-text-muted line-through text-lg mb-1">
-                                {formatPrice(vehicle.offerPrice, currency)}
-                            </span>
-                        )}
-                    </div>
+                    {vehicle.title && (
+                        <h1 className="text-3xl lg:text-4xl font-bold text-text-main dark:text-white leading-tight mt-2">
+                            {vehicle.title}
+                        </h1>
+                    )}
+                    {vehicle.price > 0 && (
+                        <div className="flex items-end gap-3 mt-1">
+                            <h2 className="text-2xl lg:text-3xl font-bold text-primary">
+                                {formatPrice(vehicle.price, currency)}
+                            </h2>
+                            {vehicle.offerPrice && (
+                                <span className="text-text-muted line-through text-lg mb-1">
+                                    {formatPrice(vehicle.offerPrice, currency)}
+                                </span>
+                            )}
+                        </div>
+                    )}
                 </div>
 
-                {/* Specs Grid */}
-                <div className="grid grid-cols-2 gap-3 lg:gap-4 lg:grid-cols-3">
-                    <div className="bg-background-light dark:bg-background-dark/50 p-4 rounded-xl flex flex-col items-start gap-2 group hover:bg-[#e7f3ec] transition-colors duration-300">
-                        <div className="p-2 rounded-full bg-white dark:bg-white/10 text-primary shadow-sm group-hover:scale-110 transition-transform">
-                            <Gauge className="w-5 h-5" />
-                        </div>
-                        <div>
-                            <p className="text-xs text-text-muted uppercase tracking-wider font-semibold">Kilometraje</p>
-                            <p className="text-base font-bold text-text-main dark:text-white">
-                                {vehicle.mileage ? vehicle.mileage.toLocaleString('es-HN') : '0'} km
+                {/* Specs Grid — solo muestra campos con valor */}
+                {specs.length > 0 && (
+                    <div className="grid grid-cols-2 gap-3 lg:gap-4 lg:grid-cols-3">
+                        {specs.map((spec, i) => (
+                            <SpecCard key={i} icon={spec.icon} label={spec.label} value={spec.value} />
+                        ))}
+                    </div>
+                )}
+
+                {/* Description — solo si tiene contenido real */}
+                {vehicle.description && vehicle.description.trim() !== '' && (
+                    <div className="flex flex-col gap-3">
+                        <h3 className="text-lg font-bold text-text-main dark:text-white flex items-center gap-2">
+                            <Info className="w-5 h-5" />
+                            Descripción Detallada
+                        </h3>
+                        <div className="p-4 bg-background-light dark:bg-background-dark/30 rounded-xl">
+                            <p className="text-text-main dark:text-gray-300 whitespace-pre-wrap leading-relaxed text-sm">
+                                {vehicle.description}
                             </p>
-                        </div>
-                    </div>
-
-                    <div className="bg-background-light dark:bg-background-dark/50 p-4 rounded-xl flex flex-col items-start gap-2 group hover:bg-[#e7f3ec] transition-colors duration-300">
-                        <div className="p-2 rounded-full bg-white dark:bg-white/10 text-primary shadow-sm group-hover:scale-110 transition-transform">
-                            <Settings className="w-5 h-5" />
-                        </div>
-                        <div>
-                            <p className="text-xs text-text-muted uppercase tracking-wider font-semibold">Transmisión</p>
-                            <p className="text-base font-bold text-text-main dark:text-white">{vehicle.transmission || 'Automático'}</p>
-                        </div>
-                    </div>
-
-                    <div className="bg-background-light dark:bg-background-dark/50 p-4 rounded-xl flex flex-col items-start gap-2 group hover:bg-[#e7f3ec] transition-colors duration-300">
-                        <div className="p-2 rounded-full bg-white dark:bg-white/10 text-primary shadow-sm group-hover:scale-110 transition-transform">
-                            <Fuel className="w-5 h-5" />
-                        </div>
-                        <div>
-                            <p className="text-xs text-text-muted uppercase tracking-wider font-semibold">Combustible</p>
-                            <p className="text-base font-bold text-text-main dark:text-white">{vehicle.fuelType || 'Gasolina'}</p>
-                        </div>
-                    </div>
-
-                    <div className="bg-background-light dark:bg-background-dark/50 p-4 rounded-xl flex flex-col items-start gap-2 group hover:bg-[#e7f3ec] transition-colors duration-300">
-                        <div className="p-2 rounded-full bg-white dark:bg-white/10 text-primary shadow-sm group-hover:scale-110 transition-transform">
-                            <Calendar className="w-5 h-5" />
-                        </div>
-                        <div>
-                            <p className="text-xs text-text-muted uppercase tracking-wider font-semibold">Año</p>
-                            <p className="text-base font-bold text-text-main dark:text-white">{vehicle.year || '-'}</p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Description */}
-                <div className="flex flex-col gap-3">
-                    <h3 className="text-lg font-bold text-text-main dark:text-white flex items-center gap-2">
-                        <Info className="w-5 h-5" />
-                        Descripción Detallada
-                    </h3>
-                    <div className="p-4 bg-background-light dark:bg-background-dark/30 rounded-xl">
-                        <p className="text-text-main dark:text-gray-300 whitespace-pre-wrap leading-relaxed text-sm">
-                            {descriptionText}
-                        </p>
-                    </div>
-                </div>
-
-                {/* Seller Info Small */}
-                {vehicle.branch && (
-                    <div className="flex items-center gap-3 py-2 border-t border-gray-100 dark:border-gray-800 pt-4">
-                        <div className="h-10 w-10 relative rounded-full bg-gray-200 overflow-hidden shrink-0">
-                            <Image
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUp1pg5_2-gHvy7W3B9Bbrst7p6pv3YdIyzCFGnUfvAjPqRpzHi_Z3gAfHv52Azsn6Z4DbJtc2zWPofRffZ7eOQtEDZye__v9qfnI_bxf8c_S70x0dW8JhaYeYN0tPbXXN7jCp_lmTwQ0V6zalcdEylB37DjE9gCD01EnBimQCdqq_gdpN8-zoywLxuEb9EtQHJwhnzsP0jLiJwAq5ZtE7vrehze1ycDMSf-0NTN9tOoktZmAx67Qzu6OVtzk_1JkXvxVgK_cJxtt5"
-                                alt="Profile picture of seller"
-                                fill
-                                className="object-cover"
-                            />
-                        </div>
-                        <div>
-                            <p className="text-sm font-bold text-text-main dark:text-white">{vehicle.branch?.name}</p>
-                            <div className="flex items-center text-xs text-text-muted mt-0.5">
-                                <MapPin className="w-3.5 h-3.5 mr-1" />
-                                {vehicle.branch?.address || 'Honduras'}
-                            </div>
                         </div>
                     </div>
                 )}

@@ -1,19 +1,23 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { LayoutGrid, List as ListIcon } from 'lucide-react';
 import FiltersSidebar, { FilterState } from '@/components/vehicles/FiltersSidebar';
 import VehicleCard, { Vehicle } from '@/components/vehicles/VehicleCard';
 import VehicleSkeleton from '@/components/vehicles/VehicleSkeleton';
 import { fetchVehicles } from '@/api/vehicles';
-import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
-export default function CatalogoPage() {
+function CatalogContent() {
+    const searchParams = useSearchParams();
+    const searchQuery = searchParams.get('q') || '';
+
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
     const [allVehicles, setAllVehicles] = useState<Vehicle[]>([]);
     const [displayedVehicles, setDisplayedVehicles] = useState<Vehicle[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isFetchingMore, setIsFetchingMore] = useState(false);
     const [page, setPage] = useState(1);
 
     const [filters, setFilters] = useState<FilterState>({
@@ -29,15 +33,50 @@ export default function CatalogoPage() {
     const ITEMS_PER_PAGE = 9;
     const loaderRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+    const prevCountRef = useRef(0);
 
-    useGSAP(() => {
-        if (containerRef.current && containerRef.current.children.length > 0) {
-            gsap.fromTo(containerRef.current.children,
-                { opacity: 0, scale: 0.97, y: 15 },
-                { opacity: 1, scale: 1, y: 0, duration: 0.4, stagger: 0.04, ease: 'power2.out', overwrite: 'auto' }
-            );
+    // Animar SOLO las tarjetas nuevas que se agregan al grid (no re-anima las existentes)
+    const animateNewCards = useCallback(() => {
+        if (!containerRef.current) return;
+        const allCards = Array.from(containerRef.current.children).filter(
+            (el) => !el.classList.contains('skeleton-card')
+        );
+        const prevCount = prevCountRef.current;
+        const newCards = allCards.slice(prevCount);
+
+        if (newCards.length > 0) {
+            // Las tarjetas ya inician ocultas via CSS (.vehicle-card-enter)
+            // Solo necesitamos animarlas HACIA visible
+            gsap.to(newCards, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.6,
+                stagger: 0.08,
+                ease: 'power3.out',
+                onComplete: () => {
+                    // Limpiar la clase de entrada para que las tarjetas funcionen normalmente
+                    newCards.forEach(card => card.classList.remove('vehicle-card-enter'));
+                },
+            });
         }
-    }, { dependencies: [viewMode, displayedVehicles], scope: containerRef });
+        prevCountRef.current = allCards.length;
+    }, []);
+
+    // Observar cambios en displayedVehicles para animar las nuevas tarjetas
+    useEffect(() => {
+        if (!isLoading && !isFetchingMore && displayedVehicles.length > 0) {
+            // Pequeño delay para asegurar que el DOM se actualizó
+            requestAnimationFrame(() => {
+                animateNewCards();
+            });
+        }
+    }, [displayedVehicles, isLoading, isFetchingMore, animateNewCards]);
+
+    // Reset el contador cuando cambia el viewMode o los filtros
+    useEffect(() => {
+        prevCountRef.current = 0;
+    }, [viewMode, filters, sortBy]);
 
     useEffect(() => {
         const loadInitialData = async () => {
@@ -46,7 +85,7 @@ export default function CatalogoPage() {
                 const data = await fetchVehicles();
                 setAllVehicles(data);
 
-                // Initialize highest price dynamically for the filter slider if data exists
+                // Opcional: inicializar precios altos
                 if (data.length > 0) {
                     const maxP = Math.max(...data.map((v: Vehicle) => v.price));
                     setFilters(prev => ({ ...prev, maxPrice: maxP }));
@@ -79,7 +118,16 @@ export default function CatalogoPage() {
             const modelMatch = !filters.model || v.model?.name === filters.model;
             const priceMatch = v.price <= filters.maxPrice;
             const yearMatch = v.year >= filters.minYear;
-            return brandMatch && modelMatch && priceMatch && yearMatch;
+
+            // Text search match from Navbar
+            const searchLower = searchQuery.toLowerCase();
+            const textMatch = !searchQuery ||
+                v.title.toLowerCase().includes(searchLower) ||
+                (v.brand?.name || '').toLowerCase().includes(searchLower) ||
+                (v.model?.name || '').toLowerCase().includes(searchLower) ||
+                (v.badge || '').toLowerCase().includes(searchLower);
+
+            return brandMatch && modelMatch && priceMatch && yearMatch && textMatch;
         });
 
         return filtered.sort((a, b) => {
@@ -88,7 +136,7 @@ export default function CatalogoPage() {
             // Defaults to 'recent' logic where ids/publicIds assuming descending dates, or rely on original array order if they came sorted
             return 0;
         });
-    }, [allVehicles, filters, sortBy]);
+    }, [allVehicles, filters, sortBy, searchQuery]);
 
     // Keep displayed vehicles synced when filters change
     useEffect(() => {
@@ -98,15 +146,18 @@ export default function CatalogoPage() {
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             const target = entries[0];
-            if (target.isIntersecting && !isLoading && displayedVehicles.length < filteredVehicles.length) {
+            if (target.isIntersecting && !isLoading && !isFetchingMore && displayedVehicles.length < filteredVehicles.length) {
+                setIsFetchingMore(true);
+                // Simular un delay artificial de 1 segundo al hacer scroll (UX)
                 setTimeout(() => {
                     setPage(prev => prev + 1);
-                }, 400);
+                    setIsFetchingMore(false);
+                }, 1000);
             }
         }, {
             root: null,
-            rootMargin: '100px',
-            threshold: 0.1
+            rootMargin: '200px',
+            threshold: 0.8
         });
 
         if (loaderRef.current) {
@@ -116,7 +167,7 @@ export default function CatalogoPage() {
         return () => {
             if (loaderRef.current) observer.disconnect();
         };
-    }, [isLoading, displayedVehicles.length, filteredVehicles]);
+    }, [isLoading, isFetchingMore, displayedVehicles.length, filteredVehicles.length]);
 
     const hasMore = displayedVehicles.length < filteredVehicles.length;
     const maxGlobalPrice = allVehicles.length > 0 ? Math.max(...allVehicles.map(v => v.price)) : 2000000;
@@ -134,6 +185,8 @@ export default function CatalogoPage() {
 
             {/* Contenido Principal */}
             <div className="flex-1 min-w-0">
+
+
 
                 {/* Cabecera de resultados */}
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
@@ -197,26 +250,21 @@ export default function CatalogoPage() {
                             <VehicleCard key={vehicle.id} vehicle={vehicle} viewMode={viewMode} />
                         ))}
 
+                        {/* Mostrar esqueletos extra solo cuando estamos cargando la siguiente página */}
+                        {isFetchingMore && (
+                            <>
+                                {[1, 2, 3].map(i => <VehicleSkeleton key={`extra-${i}`} viewMode={viewMode} />)}
+                            </>
+                        )}
+
                         {/* Tarjeta de Publicidad (Ad placeholder) */}
-                        <article className="relative aspect-story bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-slate-800 flex flex-col justify-center items-center text-center p-6">
-                            <div className="absolute top-4 left-4">
-                                <span className="bg-gray-100 dark:bg-slate-800 text-text-muted text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">
-                                    Anuncio
-                                </span>
-                            </div>
-                            <div className="w-20 h-20 bg-gray-50 dark:bg-slate-800 rounded-full flex items-center justify-center mb-4">
-                                <span className="material-symbols-outlined text-4xl text-gray-300">ads_click</span>
-                            </div>
-                            <h3 className="text-lg font-bold text-text-main dark:text-white mb-2">Publicidad Aquí</h3>
-                            <p className="text-sm text-text-muted mb-6">Llega a miles de compradores hondureños.</p>
-                            <button className="text-primary font-bold text-sm hover:underline">Más información</button>
-                        </article>
+                        {/* ... */}
                     </div>
                 )}
 
                 {/* Loading / Pagination Indicator */}
                 {!isLoading && (
-                    <div ref={loaderRef} className="py-12 flex justify-center w-full h-32">
+                    <div ref={loaderRef} className="mt-10 flex justify-center w-full h-32">
                         {hasMore ? (
                             <div className="group flex flex-col items-center gap-3 opacity-80">
                                 <div className="size-12 rounded-full border-4 border-gray-200 border-t-primary animate-spin"></div>
@@ -230,5 +278,17 @@ export default function CatalogoPage() {
 
             </div>
         </main>
+    );
+}
+
+export default function CatalogoPage() {
+    return (
+        <Suspense fallback={
+            <div className="flex justify-center items-center min-h-screen">
+                <div className="size-16 rounded-full border-4 border-gray-200 border-t-primary animate-spin"></div>
+            </div>
+        }>
+            <CatalogContent />
+        </Suspense>
     );
 }
