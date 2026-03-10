@@ -52,7 +52,7 @@ export default async function VehicleDetailPage({ params }: Props) {
     return (
         <main className="flex-grow w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 py-6 lg:py-10">
             <div className="pt-5 lg:pt-5 mb-6">
-                <Link href="/catalogo" className="inline-flex items-center gap-2 text-text-muted hover:text-primary transition-colors font-bold text-sm bg-white/50 dark:bg-slate-800/50 backdrop-blur-md px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 shadow-sm w-fit">
+                <Link href="/catalogo" className="inline-flex items-center gap-2 text-text-muted hover:text-primary transition-colors font-bold text-sm bg-white/50 backdrop-blur-md px-4 py-2 rounded-full border border-slate-200 shadow-sm w-fit">
                     <ChevronLeft className="w-5 h-5" />
                     Volver al Catálogo
                 </Link>

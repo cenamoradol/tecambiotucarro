@@ -29,7 +29,7 @@ export default function FiltersSidebar({ filters, setFilters, availableBrands, a
     return (
         <aside className="hidden lg:block w-[280px] shrink-0">
             <div className="sticky top-28 flex flex-col gap-6">
-                <div className="bg-surface rounded-xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 dark:border-slate-800">
+                <div className="bg-surface rounded-xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
                     <div className="flex items-center justify-between mb-6">
                         <h2 className="text-lg font-bold flex items-center gap-2">
                             <Filter className="w-5 h-5 text-primary" />
@@ -50,7 +50,7 @@ export default function FiltersSidebar({ filters, setFilters, availableBrands, a
                             <select
                                 value={filters.brand}
                                 onChange={(e) => setFilters(prev => ({ ...prev, brand: e.target.value, model: '' }))}
-                                className="w-full appearance-none bg-background-light dark:bg-slate-900 border border-gray-200 dark:border-slate-700 text-sm font-bold text-text-main dark:text-gray-200 rounded-lg py-3 pl-4 pr-10 shadow-sm focus:ring-1 focus:ring-primary focus:outline-none cursor-pointer"
+                                className="w-full appearance-none bg-background-light border border-gray-200 text-sm font-bold text-text-main rounded-lg py-3 pl-4 pr-10 shadow-sm focus:ring-1 focus:ring-primary focus:outline-none cursor-pointer"
                             >
                                 <option value="">Todas las marcas</option>
                                 {availableBrands.map(brand => (
@@ -69,7 +69,7 @@ export default function FiltersSidebar({ filters, setFilters, availableBrands, a
                                 value={filters.model}
                                 onChange={(e) => setFilters(prev => ({ ...prev, model: e.target.value }))}
                                 disabled={!filters.brand}
-                                className="w-full appearance-none bg-background-light dark:bg-slate-900 border border-gray-200 dark:border-slate-700 disabled:opacity-50 text-sm font-bold text-text-main dark:text-gray-200 rounded-lg py-3 pl-4 pr-10 shadow-sm focus:ring-1 focus:ring-primary focus:outline-none cursor-pointer"
+                                className="w-full appearance-none bg-background-light border border-gray-200 disabled:opacity-50 text-sm font-bold text-text-main rounded-lg py-3 pl-4 pr-10 shadow-sm focus:ring-1 focus:ring-primary focus:outline-none cursor-pointer"
                             >
                                 <option value="">Todos los modelos</option>
                                 {availableModels.map(model => (
@@ -94,7 +94,7 @@ export default function FiltersSidebar({ filters, setFilters, availableBrands, a
                             step="50000"
                             value={filters.maxPrice}
                             onChange={(e) => setFilters(prev => ({ ...prev, maxPrice: Number(e.target.value) }))}
-                            className="w-full h-2 bg-gray-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary"
+                            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
                         />
                     </div>
 
@@ -111,7 +111,7 @@ export default function FiltersSidebar({ filters, setFilters, availableBrands, a
                             max={new Date().getFullYear()}
                             value={filters.minYear}
                             onChange={(e) => setFilters(prev => ({ ...prev, minYear: Number(e.target.value) }))}
-                            className="w-full h-2 bg-gray-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary"
+                            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
                         />
                     </div>
                 </div>

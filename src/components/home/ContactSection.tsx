@@ -20,15 +20,15 @@ export default function ContactSection() {
     return (
         <>
             <section id="contacto" className="relative flex flex-col md:flex-row items-stretch min-h-[70vh]">
-                <div className="w-full md:w-1/2 bg-slate-200 dark:bg-slate-800 flex items-center justify-center relative overflow-hidden">
+                <div className="w-full md:w-1/2 bg-slate-200 flex items-center justify-center relative overflow-hidden">
                     <div
                         className="absolute inset-0 bg-cover bg-center opacity-30 grayscale mix-blend-multiply"
                         style={{ backgroundImage: "url('/media__1773003789655.png')" }}
                     ></div>
-                    <div className="relative z-10 text-center p-8 bg-white/60 dark:bg-black/40 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl">
+                    <div className="relative z-10 text-center p-8 bg-white/60 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl">
                         <MapPin className="w-16 h-16 text-primary mx-auto mb-4" />
                         <h3 className="text-2xl font-bold mb-2">Encuéntranos</h3>
-                        <p className="text-slate-800 dark:text-slate-200 font-medium">
+                        <p className="text-slate-800 font-medium">
                             Tegucigalpa, Honduras<br />Calle Principal de Automóviles
                         </p>
                     </div>

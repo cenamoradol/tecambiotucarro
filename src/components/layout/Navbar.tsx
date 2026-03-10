@@ -62,9 +62,9 @@ export default function Navbar() {
 
                 {/* Barra de búsqueda (Desktop) */}
                 <div className="flex-1 max-w-[480px] mx-4 hidden md:block h-14">
-                    <form onSubmit={handleSearch} className="flex w-full h-full items-center rounded-full bg-white/80 dark:bg-slate-800/80 shadow-sm border border-slate-200 dark:border-slate-700 focus-within:ring-2 focus-within:ring-primary/50 transition-all">
+                    <form onSubmit={handleSearch} className="flex w-full h-full items-center rounded-full bg-white/80 shadow-sm border border-slate-200 focus-within:ring-2 focus-within:ring-primary/50 transition-all">
                         <input
-                            className="flex-1 bg-transparent border-none text-slate-900 dark:text-white placeholder:text-slate-400 px-6 h-full focus:outline-none focus:ring-0 text-base"
+                            className="flex-1 bg-transparent border-none text-slate-900 placeholder:text-slate-400 px-6 h-full focus:outline-none focus:ring-0 text-base"
                             placeholder="Ej. Honda CRV 2017"
                             type="text"
                             value={searchQuery}
@@ -89,7 +89,7 @@ export default function Navbar() {
 
                     {/* Mobile Toggle */}
                     <button
-                        className="lg:hidden p-2 text-slate-900 dark:text-white hover:text-primary transition-colors"
+                        className="lg:hidden p-2 text-slate-900 hover:text-primary transition-colors"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label="Toggle menu"
                     >
@@ -108,9 +108,9 @@ export default function Navbar() {
                     <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={closeMobileMenu} />
 
                     {/* Panel del menú */}
-                    <div className="absolute inset-x-0 top-0 bottom-0 bg-white dark:bg-slate-900 flex flex-col overflow-y-auto">
+                    <div className="absolute inset-x-0 top-0 bottom-0 bg-white flex flex-col overflow-y-auto">
                         {/* Header del menú con logo y botón X */}
-                        <div className="flex items-center justify-between px-4 h-20 shrink-0 border-b border-gray-100 dark:border-gray-800">
+                        <div className="flex items-center justify-between px-4 h-20 shrink-0 border-b border-gray-100">
                             <Link href="/" onClick={closeMobileMenu} className="flex items-center">
                                 <div className="relative h-[60px] w-[160px] flex items-center">
                                     <Image
@@ -123,7 +123,7 @@ export default function Navbar() {
                             </Link>
                             <button
                                 onClick={closeMobileMenu}
-                                className="p-2 text-slate-900 dark:text-white hover:text-primary transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
+                                className="p-2 text-slate-900 hover:text-primary transition-colors rounded-full hover:bg-slate-100"
                                 aria-label="Cerrar menú"
                             >
                                 <X className="w-6 h-6" />
@@ -132,9 +132,9 @@ export default function Navbar() {
 
                         {/* Búsqueda móvil */}
                         <div className="px-4 pt-6 pb-4">
-                            <form onSubmit={handleSearch} className="flex w-full h-14 items-center rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus-within:ring-2 focus-within:ring-primary/50 transition-all">
+                            <form onSubmit={handleSearch} className="flex w-full h-14 items-center rounded-full bg-slate-100 border border-slate-200 focus-within:ring-2 focus-within:ring-primary/50 transition-all">
                                 <input
-                                    className="flex-1 bg-transparent border-none text-slate-900 dark:text-white placeholder:text-slate-500 px-6 h-full focus:outline-none focus:ring-0 text-base"
+                                    className="flex-1 bg-transparent border-none text-slate-900 placeholder:text-slate-500 px-6 h-full focus:outline-none focus:ring-0 text-base"
                                     placeholder="Buscar vehículos..."
                                     type="text"
                                     value={searchQuery}
@@ -152,21 +152,21 @@ export default function Navbar() {
                             <Link
                                 href="/"
                                 onClick={closeMobileMenu}
-                                className="py-4 text-lg font-semibold text-text-main dark:text-white hover:text-primary border-b border-gray-100 dark:border-gray-800 transition-colors"
+                                className="py-4 text-lg font-semibold text-text-main hover:text-primary border-b border-gray-100 transition-colors"
                             >
                                 Inicio
                             </Link>
                             <Link
                                 href="/catalogo"
                                 onClick={closeMobileMenu}
-                                className="py-4 text-lg font-bold text-primary border-b border-gray-100 dark:border-gray-800"
+                                className="py-4 text-lg font-bold text-primary border-b border-gray-100"
                             >
                                 Catálogo de Vehículos
                             </Link>
                         </nav>
 
                         {/* Footer del menú */}
-                        <div className="mt-auto px-4 py-6 border-t border-gray-100 dark:border-gray-800">
+                        <div className="mt-auto px-4 py-6 border-t border-gray-100">
                             <p className="text-sm text-text-muted text-center mb-4">
                                 Encuentra el auto de tus sueños
                             </p>

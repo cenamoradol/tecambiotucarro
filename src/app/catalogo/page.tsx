@@ -200,7 +200,7 @@ function CatalogContent() {
                     <div className="flex items-center gap-4">
 
                         {/* Toggle de vista */}
-                        <div className="flex items-center bg-white dark:bg-slate-800 rounded-lg p-1 shadow-sm border border-slate-200 dark:border-slate-700">
+                        <div className="flex items-center bg-white rounded-lg p-1 shadow-sm border border-slate-200">
                             <button
                                 onClick={() => setViewMode('grid')}
                                 className={`flex items-center justify-center size-9 rounded-md transition-all shadow-sm ${viewMode === 'grid' ? 'bg-primary text-white' : 'text-text-muted hover:text-primary'}`}
@@ -223,7 +223,7 @@ function CatalogContent() {
                             <select
                                 value={sortBy}
                                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                                className="bg-surface border border-slate-200 dark:border-slate-700 text-sm font-bold text-text-main rounded-lg py-2 pl-3 pr-8 shadow-sm focus:ring-1 focus:ring-primary focus:outline-none cursor-pointer"
+                                className="bg-surface border border-slate-200 text-sm font-bold text-text-main rounded-lg py-2 pl-3 pr-8 shadow-sm focus:ring-1 focus:ring-primary focus:outline-none cursor-pointer"
                             >
                                 <option value="recent">Más recientes</option>
                                 <option value="price_asc">Precio: Menor a Mayor</option>

@@ -54,7 +54,7 @@ export default function HomeGSAPWrapper({ children }: { children: React.ReactNod
     }, { scope: containerRef });
 
     return (
-        <div ref={containerRef} className="w-full flex flex-col font-display bg-background-light dark:bg-background-dark">
+        <div ref={containerRef} className="w-full flex flex-col font-display bg-background-light">
             {children}
         </div>
     );

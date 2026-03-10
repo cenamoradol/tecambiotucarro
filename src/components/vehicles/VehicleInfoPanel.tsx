@@ -12,13 +12,13 @@ interface VehicleInfoPanelProps {
 function SpecCard({ icon: Icon, label, value }: { icon: any; label: string; value?: string | number | null }) {
     if (!value && value !== 0) return null;
     return (
-        <div className="bg-background-light dark:bg-background-dark/50 p-4 rounded-xl flex flex-col items-start gap-2 group hover:bg-[#e7f3ec] transition-colors duration-300">
-            <div className="p-2 rounded-full bg-white dark:bg-white/10 text-primary shadow-sm group-hover:scale-110 transition-transform">
+        <div className="bg-background-light p-4 rounded-xl flex flex-col items-start gap-2 group hover:bg-[#e7f3ec] transition-colors duration-300">
+            <div className="p-2 rounded-full bg-white text-primary shadow-sm group-hover:scale-110 transition-transform">
                 <Icon className="w-5 h-5" />
             </div>
             <div>
                 <p className="text-xs text-text-muted uppercase tracking-wider font-semibold">{label}</p>
-                <p className="text-base font-bold text-text-main dark:text-white">{value}</p>
+                <p className="text-base font-bold text-text-main">{value}</p>
             </div>
         </div>
     );
@@ -37,13 +37,13 @@ export default function VehicleInfoPanel({ vehicle }: VehicleInfoPanelProps) {
 
     return (
         <div className="w-full relative lg:w-[60%]">
-            <div className="sticky top-24 flex flex-col gap-6 lg:gap-8 bg-surface dark:bg-[#1a2c22] rounded-2xl lg:rounded-3xl p-6 lg:p-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] border border-gray-100 dark:border-gray-800">
+            <div className="sticky top-24 flex flex-col gap-6 lg:gap-8 bg-surface rounded-2xl lg:rounded-3xl p-6 lg:p-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] border border-gray-100">
 
                 {/* Header & Price */}
-                <div className="flex flex-col gap-2 border-b border-gray-100 dark:border-gray-800 pb-6">
+                <div className="flex flex-col gap-2 border-b border-gray-100 pb-6">
                     <div className="flex items-start justify-between">
                         {vehicle.badge && (
-                            <span className="bg-primary/10 text-primary-dark dark:text-primary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                            <span className="bg-primary/10 text-primary-dark px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
                                 {vehicle.badge}
                             </span>
                         )}
@@ -52,7 +52,7 @@ export default function VehicleInfoPanel({ vehicle }: VehicleInfoPanelProps) {
                         </span>
                     </div>
                     {vehicle.title && (
-                        <h1 className="text-3xl lg:text-4xl font-bold text-text-main dark:text-white leading-tight mt-2">
+                        <h1 className="text-3xl lg:text-4xl font-bold text-text-main leading-tight mt-2">
                             {vehicle.title}
                         </h1>
                     )}
@@ -82,12 +82,12 @@ export default function VehicleInfoPanel({ vehicle }: VehicleInfoPanelProps) {
                 {/* Description — solo si tiene contenido real */}
                 {vehicle.description && vehicle.description.trim() !== '' && (
                     <div className="flex flex-col gap-3">
-                        <h3 className="text-lg font-bold text-text-main dark:text-white flex items-center gap-2">
+                        <h3 className="text-lg font-bold text-text-main flex items-center gap-2">
                             <Info className="w-5 h-5" />
                             Descripción Detallada
                         </h3>
-                        <div className="p-4 bg-background-light dark:bg-background-dark/30 rounded-xl">
-                            <p className="text-text-main dark:text-gray-300 whitespace-pre-wrap leading-relaxed text-sm">
+                        <div className="p-4 bg-background-light rounded-xl">
+                            <p className="text-text-main whitespace-pre-wrap leading-relaxed text-sm">
                                 {vehicle.description}
                             </p>
                         </div>

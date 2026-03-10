@@ -5,7 +5,7 @@ export default function MissionVisionSection() {
     return (
         <section className="flex flex-col min-h-screen" id="mision-vision">
             {/* Misión */}
-            <div className="flex-1 w-full bg-background-light dark:bg-slate-900 relative overflow-hidden flex items-center border-b border-slate-200 dark:border-slate-800 py-20">
+            <div className="flex-1 w-full bg-background-light relative overflow-hidden flex items-center border-b border-slate-200 py-20">
                 <div className="absolute inset-0 bg-primary/5 -skew-x-12 translate-x-1/2 opacity-30"></div>
                 <div className="container mx-auto px-12 md:px-32 flex justify-start z-10 w-full lg:w-[85%]">
                     <div className="flex flex-col md:flex-row items-center gap-12">
@@ -16,7 +16,7 @@ export default function MissionVisionSection() {
                         </div>
                         <div>
                             <h3 className="text-5xl md:text-7xl font-black text-primary uppercase italic tracking-tighter mb-4">Misión</h3>
-                            <p className="text-slate-700 dark:text-slate-300 text-xl md:text-3xl leading-snug font-medium italic">
+                            <p className="text-slate-700 text-xl md:text-3xl leading-snug font-medium italic">
                                 &quot;Brindar a nuestros clientes la mejor experiencia en la compra y venta de vehículos, ofreciendo precios competitivos, procesos transparentes y una forma innovadora de hacer negocios que responda a sus necesidades.&quot;
                             </p>
                         </div>
@@ -26,7 +26,7 @@ export default function MissionVisionSection() {
             </div>
 
             {/* Visión */}
-            <div className="flex-1 w-full bg-white dark:bg-background-dark relative overflow-hidden flex items-center py-20">
+            <div className="flex-1 w-full bg-white relative overflow-hidden flex items-center py-20">
                 <div className="absolute inset-0 bg-accent/5 skew-x-12 -translate-x-1/2 opacity-30"></div>
                 <div className="container mx-auto px-12 md:px-32 flex justify-end z-10 text-right w-full lg:w-[85%]">
                     <div className="flex flex-col md:flex-row-reverse items-center gap-12">
@@ -37,7 +37,7 @@ export default function MissionVisionSection() {
                         </div>
                         <div>
                             <h3 className="text-5xl md:text-7xl font-black text-accent uppercase italic tracking-tighter mb-4">Visión</h3>
-                            <p className="text-slate-700 dark:text-slate-300 text-xl md:text-3xl leading-snug font-medium italic">
+                            <p className="text-slate-700 text-xl md:text-3xl leading-snug font-medium italic">
                                 &quot;Ser reconocidos como el referente en la compra y venta de vehículos, ofreciendo una experiencia confiable, innovadora, y construyendo relaciones duraderas con nuestros clientes basadas en confianza.&quot;
                             </p>
                         </div>

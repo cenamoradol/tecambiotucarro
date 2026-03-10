@@ -29,7 +29,7 @@ export default async function RootLayout({
 
   return (
     <html lang="es">
-      <body className={`${manrope.variable} font-display bg-background-light dark:bg-background-dark text-text-main antialiased selection:bg-primary selection:text-white`}>
+      <body className={`${manrope.variable} font-display bg-background-light text-text-main antialiased selection:bg-primary selection:text-white`}>
         {GTM_ID && (
           <>
             <Script id="google-tag-manager" strategy="afterInteractive">

@@ -95,12 +95,12 @@ export default function VehicleCard({ vehicle, viewMode = 'grid', currencySymbol
                     "bottom-content z-10 flex flex-col justify-between",
                     viewMode === 'grid'
                         ? "absolute bottom-0 left-0 right-0 p-5"
-                        : "flex-1 p-6 bg-white dark:bg-slate-900"
+                        : "flex-1 p-6 bg-white"
                 )}>
                     <div>
                         <h3 className={cn(
                             "font-bold leading-tight drop-shadow-sm",
-                            viewMode === 'grid' ? "text-white text-xl" : "text-text-main dark:text-white text-xl mb-2"
+                            viewMode === 'grid' ? "text-white text-xl" : "text-text-main text-xl mb-2"
                         )}>
                             {vehicle.title}
                         </h3>
@@ -117,7 +117,7 @@ export default function VehicleCard({ vehicle, viewMode = 'grid', currencySymbol
                             "price-badge rounded-lg",
                             viewMode === 'grid'
                                 ? "bg-white/10 backdrop-blur-md border border-white/20 px-3 py-1.5"
-                                : "bg-background-light dark:bg-slate-800 border-none px-4 py-2"
+                                : "bg-background-light border-none px-4 py-2"
                         )}>
                             <span className={cn(
                                 "font-bold text-lg tracking-wide font-mono",
@@ -130,7 +130,7 @@ export default function VehicleCard({ vehicle, viewMode = 'grid', currencySymbol
                             "location-badge text-xs flex items-center gap-1 rounded",
                             viewMode === 'grid'
                                 ? "text-white/80 bg-black/20 px-2 py-1"
-                                : "text-text-muted bg-background-light dark:bg-slate-800 px-3 py-1.5"
+                                : "text-text-muted bg-background-light px-3 py-1.5"
                         )}>
                             <MapPin className="w-3 h-3" /> {displayLocation}
                         </span>

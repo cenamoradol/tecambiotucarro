@@ -55,7 +55,7 @@ export default function SideNavigation() {
     return (
         <aside className="fixed left-8 top-1/2 -translate-y-1/2 z-[60] hidden xl:block">
             <nav className="relative flex flex-col gap-6">
-                <div className="absolute left-[11px] top-8 w-[1px] h-[calc(100%-16px)] bg-slate-300 dark:bg-slate-700"></div>
+                <div className="absolute left-[11px] top-8 w-[1px] h-[calc(100%-16px)] bg-slate-300"></div>
                 {sections.map((item) => {
                     const isActive = activeSection === item.id;
                     return (
@@ -65,7 +65,7 @@ export default function SideNavigation() {
                             onClick={(e) => handleScroll(e, item.id)}
                             className={`flex items-center gap-4 py-2 transition-all duration-300 cursor-pointer ${isActive ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
                         >
-                            <span className={`w-[23px] h-[23px] rounded-full border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-background-dark flex items-center justify-center text-[10px] font-bold z-10 transition-colors ${isActive ? 'border-accent bg-accent text-white' : ''}`}>
+                            <span className={`w-[23px] h-[23px] rounded-full border-2 border-slate-300 bg-white flex items-center justify-center text-[10px] font-bold z-10 transition-colors ${isActive ? 'border-accent bg-accent text-white' : ''}`}>
                                 {item.num}
                             </span>
                             <span className={`text-xs uppercase tracking-widest whitespace-nowrap ${isActive ? 'text-accent font-bold' : ''}`}>
