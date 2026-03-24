@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import { Search, Menu, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -79,11 +80,17 @@ export default function Navbar() {
                 {/* Navegación Desktop */}
                 <div className="flex items-center gap-4 lg:gap-6 min-w-fit">
                     <nav className="hidden lg:flex items-center gap-6">
-                        <Link href="/" className="text-text-main hover:text-primary text-sm font-semibold transition-colors">
+                        <Link href="/" className={cn("text-sm font-semibold transition-colors", pathname === '/' ? "text-primary border-b-2 border-primary pb-1" : "text-text-main hover:text-primary")}>
                             Inicio
                         </Link>
-                        <Link href="/catalogo" className="text-primary text-sm font-bold border-b-2 border-primary pb-1">
-                            Catálogo
+                        <Link href="/catalogo" className={cn("text-sm font-semibold transition-colors", pathname === '/catalogo' ? "text-primary border-b-2 border-primary pb-1" : "text-text-main hover:text-primary")}>
+                            Vehículos
+                        </Link>
+                        <Link href="/en-remate" className={cn("text-sm font-semibold transition-colors", pathname === '/en-remate' ? "text-primary border-b-2 border-primary pb-1" : "text-text-main hover:text-primary")}>
+                            En Remate
+                        </Link>
+                        <Link href="/subastas" className={cn("text-sm font-semibold transition-colors", pathname === '/subastas' ? "text-primary border-b-2 border-primary pb-1" : "text-text-main hover:text-primary")}>
+                            Subastas
                         </Link>
                     </nav>
 
@@ -152,16 +159,30 @@ export default function Navbar() {
                             <Link
                                 href="/"
                                 onClick={closeMobileMenu}
-                                className="py-4 text-lg font-semibold text-text-main hover:text-primary border-b border-gray-100 transition-colors"
+                                className={cn("py-4 text-lg font-semibold border-b border-gray-100 transition-colors", pathname === '/' ? "text-primary" : "text-text-main hover:text-primary")}
                             >
                                 Inicio
                             </Link>
                             <Link
                                 href="/catalogo"
                                 onClick={closeMobileMenu}
-                                className="py-4 text-lg font-bold text-primary border-b border-gray-100"
+                                className={cn("py-4 text-lg font-semibold border-b border-gray-100 transition-colors", pathname === '/catalogo' ? "text-primary font-bold" : "text-text-main hover:text-primary")}
                             >
-                                Catálogo de Vehículos
+                                Vehículos
+                            </Link>
+                            <Link
+                                href="/en-remate"
+                                onClick={closeMobileMenu}
+                                className={cn("py-4 text-lg font-semibold border-b border-gray-100 transition-colors", pathname === '/en-remate' ? "text-primary font-bold" : "text-text-main hover:text-primary")}
+                            >
+                                En Remate
+                            </Link>
+                            <Link
+                                href="/subastas"
+                                onClick={closeMobileMenu}
+                                className={cn("py-4 text-lg font-semibold border-b border-gray-100 transition-colors", pathname === '/subastas' ? "text-primary font-bold" : "text-text-main hover:text-primary")}
+                            >
+                                Subastas
                             </Link>
                         </nav>
 

@@ -14,8 +14,8 @@ const sections = [
     { id: "mision-vision", num: "03", label: "Propósito" },
     { id: "eventos", num: "04", label: "Remates" },
     { id: "subastas", num: "05", label: "Subastas" },
-    { id: "restauracion", num: "06", label: "Restauración" },
-    { id: "off-road", num: "07", label: "Off Road" },
+    // { id: "restauracion", num: "06", label: "Restauración" },
+    // { id: "off-road", num: "07", label: "Off Road" },
     { id: "equipo", num: "08", label: "Equipo" },
     { id: "contacto", num: "09", label: "Contacto" }
 ];

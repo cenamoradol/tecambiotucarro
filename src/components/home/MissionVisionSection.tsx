@@ -38,7 +38,7 @@ export default function MissionVisionSection() {
                         <div>
                             <h3 className="text-5xl md:text-7xl font-black text-accent uppercase italic tracking-tighter mb-4">Visión</h3>
                             <p className="text-slate-700 text-xl md:text-3xl leading-snug font-medium italic">
-                                &quot;Ser reconocidos como el referente en la compra y venta de vehículos, ofreciendo una experiencia confiable, innovadora, y construyendo relaciones duraderas con nuestros clientes basadas en confianza.&quot;
+                                &quot;Ser reconocidos como referentes en la compra y venta de vehículos, ofreciendo una experiencia confiable y construyendo relaciones duraderas con nuestros clientes.&quot;
                             </p>
                         </div>
                     </div>

@@ -5,11 +5,11 @@ import { Banknote, Gavel, Wrench, Mountain } from 'lucide-react';
 const services = [
     {
         id: "eventos",
-        href: "/remates",
+        href: "/en-remate",
         icon: Banknote,
         title: "Remates",
-        description: "Eventos especiales con vehículos seleccionados a precios irresistibles.",
-        buttonText: "Descubrir Oportunidades",
+        description: "Eventos especiales con precios irresistibles.",
+        buttonText: "Conoce más aquí",
         color: "#fcad0a",
         buttonBorder: "border-[#0b6b11]",
         buttonHoverBg: "hover:bg-[#0b6b11]",
@@ -22,8 +22,8 @@ const services = [
         href: "/subastas",
         icon: Gavel,
         title: "Subastas",
-        description: "Modalidad dinámica de puja competitiva para la adjudicación de vehículos.",
-        buttonText: "Participar Ahora",
+        description: "Modalidad dinámica competitiva de pujas de precios. El mejor postor se lleva su vehículo.",
+        buttonText: "Entérate aquí",
         color: "#0b6b11",
         buttonBorder: "border-[#fcad0a]",
         buttonHoverBg: "hover:bg-[#fcad0a] hover:text-slate-900",
@@ -31,34 +31,34 @@ const services = [
         gradientColor: "from-black/40 via-transparent to-black/40",
         image: "/subasta.jpeg"
     },
-    {
-        id: "restauracion",
-        href: "/restauracion",
-        icon: Wrench,
-        title: "Restauración",
-        description: "Proyecto de recuperación integral de automóviles (mecánica y estética) basado en dinámica de redes sociales.",
-        buttonText: "Ver Proyectos",
-        color: "#fcad0a",
-        buttonBorder: "border-[#0b6b11]",
-        buttonHoverBg: "hover:bg-[#0b6b11]",
-        bgClasses: "bg-slate-950",
-        gradientColor: "from-black/60 to-transparent",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAgiBBDXszn4He3ZUUreGgPzj6aPEqleYiEEPtuRZlBYG7vxQZZqgQg2SZhv45KN4rMMcEFCfeGANUv8NUKIRvC_pqc31iZl3SBTOSKrAmF94P9iLb2pzsobgfXiMSyyjNlpJ30vm5fbXjENpNE4eeqAcayRSebPyDpzylvNRvTD2HiL4Kjw3e-FRsBi8GOAQONtJsoMgbbxt1hTHIKHSRPQuV9yauLyM41NcHY7EWgTeXJXQK9C8mzm6FFYTsYpWvkUgZLkrTGT72m"
-    },
-    {
-        id: "off-road",
-        href: "/offroad",
-        icon: Mountain,
-        title: "Off Road",
-        description: "Contenido y documentación de eventos 4x4 mostrando el desempeño todoterreno.",
-        buttonText: "Ver Galería 4x4",
-        color: "#0b6b11",
-        buttonBorder: "border-[#fcad0a]",
-        buttonHoverBg: "hover:bg-[#fcad0a] hover:text-slate-900",
-        bgClasses: "bg-black",
-        gradientColor: "opacity-30 mix-blend-color from-primary/10 to-transparent",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC3xQIakMMo-CpdiRAYS_x-NG1Ds54ELO95wqfQeLsaFJBu11l1yke4AqTh7pTnZv8SFKB_GplAIEY3PRirniRs2Ck7E-0yV1YsXjM0SH0Mcc1GC9aA_Bh3irNR9ee81aBisHcL2xi2vm8gxmENJ20pxk9LLYvtnKBbO0l_0UWd0PLZ3G8ZbNqjun7jNbIZCT7RH3o5LwtfY6QfiLB6uzZWqPSQ1mWH7Ozg9CcPyMV-MlnusxJzBBzT6UZMv_AMEeDSBFRYo5R0fUKV"
-    }
+    // {
+    //     id: "restauracion",
+    //     href: "/restauracion",
+    //     icon: Wrench,
+    //     title: "Restauración",
+    //     description: "Proyecto de recuperación integral de automóviles (mecánica y estética) basado en dinámica de redes sociales.",
+    //     buttonText: "Explora más",
+    //     color: "#fcad0a",
+    //     buttonBorder: "border-[#0b6b11]",
+    //     buttonHoverBg: "hover:bg-[#0b6b11]",
+    //     bgClasses: "bg-slate-950",
+    //     gradientColor: "from-black/60 to-transparent",
+    //     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAgiBBDXszn4He3ZUUreGgPzj6aPEqleYiEEPtuRZlBYG7vxQZZqgQg2SZhv45KN4rMMcEFCfeGANUv8NUKIRvC_pqc31iZl3SBTOSKrAmF94P9iLb2pzsobgfXiMSyyjNlpJ30vm5fbXjENpNE4eeqAcayRSebPyDpzylvNRvTD2HiL4Kjw3e-FRsBi8GOAQONtJsoMgbbxt1hTHIKHSRPQuV9yauLyM41NcHY7EWgTeXJXQK9C8mzm6FFYTsYpWvkUgZLkrTGT72m"
+    // },
+    // {
+    //     id: "off-road",
+    //     href: "/offroad",
+    //     icon: Mountain,
+    //     title: "Off Road",
+    //     description: "Explora la adrenalina del 4x4 videos y momentos de eventos todoterreno.",
+    //     buttonText: "Siente la adrenalina",
+    //     color: "#0b6b11",
+    //     buttonBorder: "border-[#fcad0a]",
+    //     buttonHoverBg: "hover:bg-[#fcad0a] hover:text-slate-900",
+    //     bgClasses: "bg-black",
+    //     gradientColor: "opacity-30 mix-blend-color from-primary/10 to-transparent",
+    //     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC3xQIakMMo-CpdiRAYS_x-NG1Ds54ELO95wqfQeLsaFJBu11l1yke4AqTh7pTnZv8SFKB_GplAIEY3PRirniRs2Ck7E-0yV1YsXjM0SH0Mcc1GC9aA_Bh3irNR9ee81aBisHcL2xi2vm8gxmENJ20pxk9LLYvtnKBbO0l_0UWd0PLZ3G8ZbNqjun7jNbIZCT7RH3o5LwtfY6QfiLB6uzZWqPSQ1mWH7Ozg9CcPyMV-MlnusxJzBBzT6UZMv_AMEeDSBFRYo5R0fUKV"
+    // }
 ];
 
 export default function ServicesSection() {

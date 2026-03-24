@@ -16,7 +16,7 @@ export default function TeamSection() {
                 <span className="text-accent font-bold tracking-widest uppercase text-sm mb-4 block">Especialistas</span>
                 <h2 className="text-4xl md:text-5xl font-black mb-6 text-primary">Nuestro Equipo</h2>
                 <p className="text-slate-600 text-lg max-w-3xl mx-auto mb-16 leading-relaxed">
-                    Con un equipo comprometido en brindar una atención cercana, transparente y eficiente a cada cliente. Nuestro personal está preparado para asesorar y acompañar a los usuarios durante todo el proceso de compra, venta o cambio de vehículos, garantizando una experiencia confiable y satisfactoria.
+                    Con un equipo comprometido en brindar una atención eficiente y transparente, estamos preparados para asesorarte y acompañarte durante tu proceso de compra, venta o cambio de vehículo, garantizando una experiencia confiable y satisfactoria.
                 </p>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
                     {team.map((member, index) => (

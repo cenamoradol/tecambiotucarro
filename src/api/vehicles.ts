@@ -15,6 +15,17 @@ export async function fetchVehicles(): Promise<Vehicle[]> {
     return data.vehicles || []; // El backend devuelve { store, vehicles }
 }
 
+export async function fetchClearanceVehicles(): Promise<Vehicle[]> {
+    if (!STORE_ID) throw new Error('Store ID no configurado');
+    const res = await fetch(`${API_BASE}/public/id/${STORE_ID}/clearance`, {
+        next: { revalidate: 60 }
+    });
+
+    if (!res.ok) throw new Error('Error cargando vehículos en remate');
+    const data = await res.json();
+    return data.vehicles || [];
+}
+
 export async function fetchVehicle(publicId: string): Promise<Vehicle> {
     if (!STORE_ID) throw new Error('Store ID no configurado');
     const res = await fetch(`${API_BASE}/public/id/${STORE_ID}/vehicles/${publicId}`, {

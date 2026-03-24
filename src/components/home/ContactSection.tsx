@@ -29,7 +29,7 @@ export default function ContactSection() {
                         <MapPin className="w-16 h-16 text-primary mx-auto mb-4" />
                         <h3 className="text-2xl font-bold mb-2">Encuéntranos</h3>
                         <p className="text-slate-800 font-medium">
-                            Tegucigalpa, Honduras<br />Calle Principal de Automóviles
+                            Entrada Colonia Aurora, 6 calle, <br />Avenida Juan Pablo ll, San Pedro Sula, Cortés.
                         </p>
                     </div>
                 </div>
@@ -44,7 +44,8 @@ export default function ContactSection() {
                             </div>
                             <div>
                                 <h4 className="font-bold text-xl mb-1">Horario de Atención</h4>
-                                <p className="text-slate-400">Lunes a Sábado: 8:00 AM - 6:00 PM</p>
+                                <p className="text-slate-400">Lunes a Viernes: 7:00 a.m. - 5:00 p.m.</p>
+                                <p className="text-slate-400">Sábados: 7:00 a.m. - 3:00 p.m.</p>
                             </div>
                         </div>
 
