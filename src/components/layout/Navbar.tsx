@@ -3,15 +3,21 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { Search, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
+
+    // Sincronizar campo de búsqueda con el parámetro de la URL q
+    useEffect(() => {
+        setSearchQuery(searchParams.get('q') || '');
+    }, [searchParams]);
 
     // Cerrar menú móvil al cambiar de ruta
     useEffect(() => {
@@ -177,13 +183,6 @@ export default function Navbar() {
                             >
                                 En Remate
                             </Link>
-                            <Link
-                                href="/subastas"
-                                onClick={closeMobileMenu}
-                                className={cn("py-4 text-lg font-semibold border-b border-gray-100 transition-colors", pathname === '/subastas' ? "text-primary font-bold" : "text-text-main hover:text-primary")}
-                            >
-                                Subastas
-                            </Link>
                         </nav>
 
                         {/* Footer del menú */}
@@ -192,7 +191,7 @@ export default function Navbar() {
                                 Encuentra el auto de tus sueños
                             </p>
                             <a
-                                href="https://wa.me/50400000000"
+                                href="https://wa.me/50498023560"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-full h-14 rounded-full bg-whatsapp text-white font-bold text-lg flex items-center justify-center gap-2"

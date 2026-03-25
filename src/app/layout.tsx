@@ -13,6 +13,14 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Te Cambio Tu Carro",
   description: "Compra y venta de vehículos. Catálogo y Remates.",
+  icons: {
+    icon: [
+      { url: '/favicon/favicon.ico', sizes: '32x32' },
+      { url: '/favicon/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/favicon/apple-touch-icon.png',
+  },
+  manifest: '/favicon/site.webmanifest',
 };
 
 import { cookies } from 'next/headers';

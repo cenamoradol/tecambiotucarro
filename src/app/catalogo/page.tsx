@@ -73,10 +73,15 @@ function CatalogContent() {
         }
     }, [displayedVehicles, isLoading, isFetchingMore, animateNewCards]);
 
-    // Reset el contador cuando cambia el viewMode o los filtros
+    // Reset el contador cuando cambia el viewMode, filtros o búsqueda
     useEffect(() => {
         prevCountRef.current = 0;
-    }, [viewMode, filters, sortBy]);
+    }, [viewMode, filters, sortBy, searchQuery]);
+
+    // Reset de página al cambiar búsqueda o filtros
+    useEffect(() => {
+        setPage(1);
+    }, [searchQuery, filters, sortBy]);
 
     useEffect(() => {
         const loadInitialData = async () => {
