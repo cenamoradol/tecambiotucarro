@@ -117,12 +117,12 @@ export default function FiltersSidebar({ filters, setFilters, availableBrands, a
                 </div>
 
                 {/* Banner Vender Auto */}
-                <div className="bg-gradient-to-br from-background-dark to-black rounded-xl p-6 text-white relative overflow-hidden mt-4">
+                {/* <div className="bg-gradient-to-br from-background-dark to-black rounded-xl p-6 text-white relative overflow-hidden mt-4">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-2xl -mr-10 -mt-10"></div>
                     <h3 className="font-bold text-lg mb-2 relative z-10">¿Vendes tu auto?</h3>
                     <p className="text-sm text-gray-300 mb-4 relative z-10">Publícalo hoy y recibe ofertas al instante.</p>
                     <button className="w-full py-2 bg-primary text-background-dark font-bold rounded-lg text-sm hover:bg-white transition-colors relative z-10">Vender Ahora</button>
-                </div>
+                </div> */}
             </div>
         </aside>
     );

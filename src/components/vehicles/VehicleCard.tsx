@@ -25,6 +25,7 @@ export interface Vehicle {
     model?: { id: string; name: string };
     badge?: string;
     status?: string | 'AVAILABLE' | 'SOLD' | 'RESERVED';
+    isClearance?: boolean;
 }
 
 interface VehicleCardProps {
@@ -70,7 +71,7 @@ export default function VehicleCard({ vehicle, viewMode = 'grid', currencySymbol
                             <div className="relative w-full h-full p-8 flex items-center justify-center">
                                 <div className="relative w-full h-full max-w-[300px] max-h-[300px]">
                                     <Image
-                                        src="/vendido.png"
+                                        src="/vendido.webp"
                                         alt="Vendido"
                                         fill
                                         className="object-contain drop-shadow-2xl"
