@@ -4,6 +4,13 @@ import { fetchCategoryEvents, Event } from '@/api/events';
 
 export const revalidate = 60; // Revalida cada minuto
 
+export const metadata = {
+    robots: {
+        index: false,
+        follow: true,
+    },
+};
+
 export default async function SubastasPage() {
     // Buscamos directamente la categoría llamada 'subastas'
     let events: Event[] = [];

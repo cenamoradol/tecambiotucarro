@@ -89,9 +89,9 @@ export default function Navbar() {
                         <Link href="/en-remate" className={cn("text-sm font-semibold transition-colors", pathname === '/en-remate' ? "text-primary border-b-2 border-primary pb-1" : "text-text-main hover:text-primary")}>
                             En Remate
                         </Link>
-                        <Link href="/subastas" className={cn("text-sm font-semibold transition-colors", pathname === '/subastas' ? "text-primary border-b-2 border-primary pb-1" : "text-text-main hover:text-primary")}>
+                        {/* <Link href="/subastas" className={cn("text-sm font-semibold transition-colors", pathname === '/subastas' ? "text-primary border-b-2 border-primary pb-1" : "text-text-main hover:text-primary")}>
                             Subastas
-                        </Link>
+                        </Link> */}
                     </nav>
 
                     {/* Mobile Toggle */}

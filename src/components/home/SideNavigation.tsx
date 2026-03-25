@@ -12,12 +12,12 @@ const sections = [
     { id: "hero", num: "01", label: "Inicio" },
     { id: "quienes-somos", num: "02", label: "Quiénes Somos" },
     { id: "mision-vision", num: "03", label: "Propósito" },
-    { id: "eventos", num: "04", label: "Remates" },
-    { id: "subastas", num: "05", label: "Subastas" },
+    // { id: "eventos", num: "04", label: "Remates" },
+    // { id: "subastas", num: "05", label: "Subastas" },
     // { id: "restauracion", num: "06", label: "Restauración" },
     // { id: "off-road", num: "07", label: "Off Road" },
-    { id: "equipo", num: "08", label: "Equipo" },
-    { id: "contacto", num: "09", label: "Contacto" }
+    { id: "equipo", num: "04", label: "Equipo" },
+    { id: "contacto", num: "05", label: "Contacto" }
 ];
 
 export default function SideNavigation() {
@@ -63,12 +63,12 @@ export default function SideNavigation() {
                             key={item.id}
                             href={`#${item.id}`}
                             onClick={(e) => handleScroll(e, item.id)}
-                            className={`flex items-center gap-4 py-2 transition-all duration-300 cursor-pointer ${isActive ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
+                            className={`flex items-center text-primary gap-4 py-2 transition-all duration-300 cursor-pointer ${isActive ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
                         >
-                            <span className={`w-[23px] h-[23px] rounded-full border-2 border-slate-300 bg-white flex items-center justify-center text-[10px] font-bold z-10 transition-colors ${isActive ? 'border-accent bg-accent text-white' : ''}`}>
+                            <span className={`w-[23px] h-[23px] rounded-full border-2 border-slate-300 bg-white flex items-center justify-center text-[10px] font-bold z-10 transition-colors ${isActive ? 'border-accent bg-accent text-accent' : ''}`}>
                                 {item.num}
                             </span>
-                            <span className={`text-xs uppercase tracking-widest whitespace-nowrap ${isActive ? 'text-accent font-bold' : ''}`}>
+                            <span className={`text-xs uppercase tracking-widest whitespace-nowrap  ${isActive ? 'text-accent font-bold' : ''}`}>
                                 {item.label}
                             </span>
                         </a>

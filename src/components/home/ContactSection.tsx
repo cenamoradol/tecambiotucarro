@@ -20,18 +20,26 @@ export default function ContactSection() {
     return (
         <>
             <section id="contacto" className="relative flex flex-col md:flex-row items-stretch min-h-[70vh]">
-                <div className="w-full md:w-1/2 bg-slate-200 flex items-center justify-center relative overflow-hidden">
-                    <div
-                        className="absolute inset-0 bg-cover bg-center opacity-30 grayscale mix-blend-multiply"
-                        style={{ backgroundImage: "url('/media__1773003789655.png')" }}
-                    ></div>
-                    <div className="relative z-10 text-center p-8 bg-white/60 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl">
-                        <MapPin className="w-16 h-16 text-primary mx-auto mb-4" />
+                <div className="w-full md:w-1/2 bg-slate-200 flex items-center justify-center relative overflow-hidden min-h-[400px]">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3844.7100473183596!2d-88.01846147304687!3d15.500020899999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f665b5255f704bd%3A0xda3070f690ee41b6!2sTe%20Cambio%20Tu%20Carro!5e0!3m2!1ses-419!2shn!4v1774413999496!5m2!1ses-419!2shn"
+                        className="absolute inset-0 w-full h-full border-0 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                    <a
+                        href="https://www.google.com/maps/search/?api=1&query=Te+Cambio+Tu+Carro+San+Pedro+Sula"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative z-10 text-center p-8 bg-white/60 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl hover:bg-white/80 transition-all group block"
+                    >
+                        <MapPin className="w-16 h-16 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform" />
                         <h3 className="text-2xl font-bold mb-2">Encuéntranos</h3>
                         <p className="text-slate-800 font-medium">
                             Entrada Colonia Aurora, 6 calle, <br />Avenida Juan Pablo ll, San Pedro Sula, Cortés.
                         </p>
-                    </div>
+                    </a>
                 </div>
                 <div className="w-full md:w-1/2 p-12 md:p-24 flex flex-col justify-center bg-background-dark text-white">
                     <span className="text-accent font-bold tracking-widest uppercase text-sm mb-4 block">Conéctate con Nosotros</span>
@@ -55,11 +63,27 @@ export default function ContactSection() {
                             </div>
                             <div>
                                 <h4 className="font-bold text-xl mb-1">Teléfonos</h4>
-                                <p className="text-slate-400">+504 2200-0000<br />+504 9900-0000</p>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+                                    <a href="https://wa.me/50497944064" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-accent transition-colors flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> +504 9794-4064
+                                    </a>
+                                    <a href="https://wa.me/50499289097" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-accent transition-colors flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> +504 9928-9097
+                                    </a>
+                                    <a href="https://wa.me/50498396592" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-accent transition-colors flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> +504 9839-6592
+                                    </a>
+                                    <a href="https://wa.me/50493483507" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-accent transition-colors flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> +504 9348-3507
+                                    </a>
+                                    <a href="https://wa.me/50498023560" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-accent transition-colors flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> +504 9802-3560
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="flex items-start gap-6 group">
+                        {/* <div className="flex items-start gap-6 group">
                             <div className="bg-white/10 p-4 rounded-2xl group-hover:bg-accent/20 transition-colors">
                                 <Mail className="w-8 h-8 text-accent" />
                             </div>
@@ -67,7 +91,7 @@ export default function ContactSection() {
                                 <h4 className="font-bold text-xl mb-1">Email</h4>
                                 <p className="text-slate-400">ventas@tecambiotucarrohn.com</p>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </section>

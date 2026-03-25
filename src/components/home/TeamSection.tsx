@@ -1,12 +1,13 @@
 import React from 'react';
+import Image from 'next/image';
 import { Users } from 'lucide-react';
 
 const team = [
-    { name: "Javier Enamorado", role: "Asesor de Ventas" },
-    { name: "Belizario Diaz", role: "Asesor de Ventas" },
-    { name: "Gerson Martinez", role: "Asesor de Ventas" },
-    { name: "Henry Rodriguez", role: "Asesor de Ventas" },
-    { name: "Mauricio Rodgriguez", role: "Asesor de Ventas" },
+    { name: "Javier Enamorado", role: "Asesor de Ventas", image: "/vendedores/javier.webp" },
+    { name: "Belizario Diaz", role: "Asesor de Ventas", image: "/vendedores/belizario.webp" },
+    { name: "Gerson Martinez", role: "Asesor de Ventas", image: "/vendedores/gerson.webp" },
+    { name: "Henry Rodriguez", role: "Asesor de Ventas", image: "/vendedores/henry.webp" },
+    { name: "Mauricio Rodriguez", role: "Asesor de Ventas", image: "/vendedores/mauricio.webp" },
 ];
 
 export default function TeamSection() {
@@ -21,9 +22,17 @@ export default function TeamSection() {
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
                     {team.map((member, index) => (
                         <div key={index} className="space-y-4 group">
-                            <div className="aspect-square bg-slate-200 rounded-3xl overflow-hidden flex items-center justify-center transform group-hover:-translate-y-2 transition-transform duration-300 shadow-lg group-hover:shadow-primary/20">
-                                <Users className="w-12 h-12 text-slate-400 group-hover:text-primary transition-colors" />
-                                {/* Posible imagen del miembro aquí en el futuro */}
+                            <div className="aspect-[9/16] bg-slate-200 rounded-3xl overflow-hidden flex items-center justify-center transform group-hover:-translate-y-2 transition-transform duration-300 shadow-lg group-hover:shadow-primary/20 relative">
+                                {member.image ? (
+                                    <Image
+                                        src={member.image}
+                                        alt={member.name}
+                                        fill
+                                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                                    />
+                                ) : (
+                                    <Users className="w-12 h-12 text-slate-400 group-hover:text-primary transition-colors" />
+                                )}
                             </div>
                             <div>
                                 <h5 className="font-bold text-lg">{member.name}</h5>

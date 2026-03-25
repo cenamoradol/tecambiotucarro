@@ -24,6 +24,7 @@ export interface Vehicle {
     brand?: { id: string; name: string };
     model?: { id: string; name: string };
     badge?: string;
+    status?: string | 'AVAILABLE' | 'SOLD' | 'RESERVED';
 }
 
 interface VehicleCardProps {
@@ -56,9 +57,29 @@ export default function VehicleCard({ vehicle, viewMode = 'grid', currencySymbol
                         src={displayImage}
                         alt={vehicle.title}
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className={cn(
+                            "object-cover transition-transform duration-700 group-hover:scale-105",
+                            vehicle.status === 'SOLD' && "grayscale-[0.5] opacity-80"
+                        )}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
+
+                    {/* Sold Overlay */}
+                    {vehicle.status === 'SOLD' && (
+                        <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/20 backdrop-blur-[1px]">
+                            <div className="relative w-full h-full p-8 flex items-center justify-center">
+                                <div className="relative w-full h-full max-w-[300px] max-h-[300px]">
+                                    <Image
+                                        src="/vendido.png"
+                                        alt="Vendido"
+                                        fill
+                                        className="object-contain drop-shadow-2xl"
+                                        priority
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 {/* Gradient overlay for grid view */}
