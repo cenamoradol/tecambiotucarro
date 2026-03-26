@@ -57,7 +57,7 @@ export default function Navbar() {
                     <Link href="/" className="flex items-center gap-3">
                         <div className="relative h-[76px] w-[200px] sm:w-[260px] flex items-center">
                             <Image
-                                src="/logo.png"
+                                src="/logotctc.webp"
                                 alt="Te Cambio Tu Carro Logo"
                                 fill
                                 className="object-contain object-left"

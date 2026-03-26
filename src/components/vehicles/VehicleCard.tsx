@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Heart, MapPin } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { getImageUrl, formatPrice } from '@/api/vehicles';
 
@@ -23,9 +23,12 @@ export interface Vehicle {
     branch?: any;
     brand?: { id: string; name: string };
     model?: { id: string; name: string };
+    colorRef?: { id: string; name: string };
+    vehicleType?: { id: string; name: string };
     badge?: string;
     status?: string | 'AVAILABLE' | 'SOLD' | 'RESERVED';
     isClearance?: boolean;
+    engineSize?: number;
 }
 
 interface VehicleCardProps {
@@ -98,19 +101,7 @@ export default function VehicleCard({ vehicle, viewMode = 'grid', currencySymbol
                         </span>
                     ) : <div></div>}
 
-                    <div className="flex flex-col gap-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                        <button
-                            className={cn(
-                                "size-10 rounded-full flex items-center justify-center text-text-main hover:bg-primary hover:text-white transition-colors shadow-lg",
-                                viewMode === 'grid' ? "bg-white/90 backdrop-blur-md" : "bg-slate-100"
-                            )}
-                            onClick={(e) => {
-                                e.preventDefault();
-                            }}
-                        >
-                            <Heart className="w-5 h-5" />
-                        </button>
-                    </div>
+
                 </div>
 
                 <div className={cn(

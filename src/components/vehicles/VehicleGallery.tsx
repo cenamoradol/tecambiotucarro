@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useRef, useCallback } from 'react';
 import Image from 'next/image';
-import { Heart, ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
 
 interface VehicleGalleryProps {
     images: string[];
@@ -143,12 +143,7 @@ export default function VehicleGallery({ images }: VehicleGalleryProps) {
                             >
                                 <ZoomIn className="w-5 h-5" />
                             </button>
-                            <button
-                                onClick={(e) => e.stopPropagation()}
-                                className="bg-white/20 backdrop-blur-md hover:bg-white text-white hover:text-red-500 p-3 rounded-full transition-all duration-300 shadow-lg"
-                            >
-                                <Heart className="w-5 h-5" />
-                            </button>
+
                         </div>
                     </div>
 
