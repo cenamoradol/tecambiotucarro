@@ -7,7 +7,11 @@ import FiltersSidebar, { FilterState } from '@/components/vehicles/FiltersSideba
 import VehicleCard, { Vehicle } from '@/components/vehicles/VehicleCard';
 import VehicleSkeleton from '@/components/vehicles/VehicleSkeleton';
 import { fetchVehicles } from '@/api/vehicles';
+import { fetchAdvertisements } from '@/api/advertisements';
 import gsap from 'gsap';
+import Image from 'next/image';
+
+import ListAdCard from '@/components/vehicles/ListAdCard';
 
 function CatalogContent() {
     const searchParams = useSearchParams();
@@ -19,6 +23,7 @@ function CatalogContent() {
     const [isLoading, setIsLoading] = useState(true);
     const [isFetchingMore, setIsFetchingMore] = useState(false);
     const [page, setPage] = useState(1);
+    const [listAds, setListAds] = useState<any[]>([]);
 
     const [filters, setFilters] = useState<FilterState>({
         brand: '',
@@ -87,16 +92,22 @@ function CatalogContent() {
         const loadInitialData = async () => {
             try {
                 setIsLoading(true);
-                const data = await fetchVehicles();
-                setAllVehicles(data);
+                const [vehiclesData, adsData] = await Promise.all([
+                    fetchVehicles(),
+                    fetchAdvertisements()
+                ]);
+                
+                setAllVehicles(vehiclesData);
+                const listPlacementAds = adsData.filter(ad => ad.placement === 'VEHICLE_LIST');
+                setListAds(listPlacementAds);
 
                 // Opcional: inicializar precios altos
-                if (data.length > 0) {
-                    const maxP = Math.max(...data.map((v: Vehicle) => v.price));
+                if (vehiclesData.length > 0) {
+                    const maxP = Math.max(...vehiclesData.map((v: Vehicle) => v.price));
                     setFilters(prev => ({ ...prev, maxPrice: maxP }));
                 }
             } catch (error) {
-                console.error("Error loading vehicles", error);
+                console.error("Error loading data", error);
             } finally {
                 setIsLoading(false);
             }
@@ -251,9 +262,20 @@ function CatalogContent() {
                             : 'grid-cols-1 view-list w-full'
                             }`}
                     >
-                        {displayedVehicles.map((vehicle: Vehicle) => (
-                            <VehicleCard key={vehicle.id} vehicle={vehicle} viewMode={viewMode} />
-                        ))}
+                        {displayedVehicles.map((vehicle: Vehicle, index: number) => {
+                            const showAd = (index + 1) % 2 === 0;
+                            const adIndex = Math.floor(index / 2) % (listAds.length || 1);
+                            const currentAd = listAds.length > 0 ? listAds[adIndex] : null;
+
+                            return (
+                                <React.Fragment key={vehicle.id}>
+                                    <VehicleCard vehicle={vehicle} viewMode={viewMode} />
+                                    {showAd && currentAd && (
+                                        <ListAdCard ad={currentAd} viewMode={viewMode} />
+                                    )}
+                                </React.Fragment>
+                            );
+                        })}
 
                         {/* Mostrar esqueletos extra solo cuando estamos cargando la siguiente página */}
                         {isFetchingMore && (
@@ -261,9 +283,6 @@ function CatalogContent() {
                                 {[1, 2, 3].map(i => <VehicleSkeleton key={`extra-${i}`} viewMode={viewMode} />)}
                             </>
                         )}
-
-                        {/* Tarjeta de Publicidad (Ad placeholder) */}
-                        {/* ... */}
                     </div>
                 )}
 

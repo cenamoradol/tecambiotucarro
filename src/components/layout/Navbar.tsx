@@ -95,6 +95,9 @@ export default function Navbar() {
                         <Link href="/en-remate" className={cn("text-sm font-semibold transition-colors", pathname === '/en-remate' ? "text-primary border-b-2 border-primary pb-1" : "text-text-main hover:text-primary")}>
                             En Remate
                         </Link>
+                        <Link href="/servicios" className={cn("text-sm font-semibold transition-colors", pathname === '/servicios' ? "text-primary border-b-2 border-primary pb-1" : "text-text-main hover:text-primary")}>
+                            Emprendedores
+                        </Link>
                         {/* <Link href="/subastas" className={cn("text-sm font-semibold transition-colors", pathname === '/subastas' ? "text-primary border-b-2 border-primary pb-1" : "text-text-main hover:text-primary")}>
                             Subastas
                         </Link> */}
@@ -182,6 +185,13 @@ export default function Navbar() {
                                 className={cn("py-4 text-lg font-semibold border-b border-gray-100 transition-colors", pathname === '/en-remate' ? "text-primary font-bold" : "text-text-main hover:text-primary")}
                             >
                                 En Remate
+                            </Link>
+                            <Link
+                                href="/servicios"
+                                onClick={closeMobileMenu}
+                                className={cn("py-4 text-lg font-semibold border-b border-gray-100 transition-colors", pathname === '/servicios' ? "text-primary font-bold" : "text-text-main hover:text-primary")}
+                            >
+                                Emprendedores
                             </Link>
                         </nav>
 

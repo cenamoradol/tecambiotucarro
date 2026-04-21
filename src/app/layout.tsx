@@ -23,6 +23,8 @@ export const metadata: Metadata = {
   manifest: '/favicon/site.webmanifest',
 };
 
+import FloatingAd from "@/components/home/FloatingAd";
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -54,6 +56,7 @@ export default async function RootLayout({
         <MainLayoutClient>
           {children}
         </MainLayoutClient>
+        <FloatingAd />
       </body>
     </html>
   );
