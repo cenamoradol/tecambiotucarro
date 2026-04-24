@@ -24,7 +24,7 @@ function ClearanceContent() {
         brand: '',
         model: '',
         maxPrice: 2000000,
-        minYear: 2000
+        minYear: 1980
     });
 
     type SortOption = 'recent' | 'price_asc' | 'price_desc';

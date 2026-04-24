@@ -22,7 +22,7 @@ export default function FiltersSidebar({ filters, setFilters, availableBrands, a
             brand: '',
             model: '',
             maxPrice: maxPriceLimit,
-            minYear: 2000
+            minYear: 1980
         });
     };
 
@@ -102,12 +102,12 @@ export default function FiltersSidebar({ filters, setFilters, availableBrands, a
                     <div className="space-y-4 mb-2">
                         <h3 className="text-sm font-bold text-text-muted uppercase tracking-wider">Año Mínimo</h3>
                         <div className="flex items-center justify-between text-sm font-bold text-text-main mb-2">
-                            <span>2000</span>
+                            <span>1980</span>
                             <span>{filters.minYear}</span>
                         </div>
                         <input
                             type="range"
-                            min="2000"
+                            min="1980"
                             max={new Date().getFullYear()}
                             value={filters.minYear}
                             onChange={(e) => setFilters(prev => ({ ...prev, minYear: Number(e.target.value) }))}
