@@ -6,11 +6,15 @@ import { ServiceListing } from "@/api/services";
 
 interface Props {
   service: ServiceListing;
+  onSelect?: (service: ServiceListing) => void;
 }
 
-export function ServiceCard({ service }: Props) {
+export function ServiceCard({ service, onSelect }: Props) {
   return (
-    <div className="group relative bg-white dark:bg-slate-800 rounded-[2rem] p-4 shadow-sm hover:shadow-2xl border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:-translate-y-2 overflow-hidden">
+    <div 
+      className="group relative bg-white dark:bg-slate-800 rounded-[2rem] p-4 shadow-sm hover:shadow-2xl border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:-translate-y-2 overflow-hidden cursor-pointer"
+      onClick={() => onSelect?.(service)}
+    >
       {/* Background Glow Effect */}
       <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-all duration-700" />
       

@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { ServiceListing, ServiceCategory } from "@/api/services";
 import { ServiceFiltersSidebar, ServiceFilterState } from "./ServiceFiltersSidebar";
 import { ServiceCard } from "./ServiceCard";
+import { ServiceDetailModal } from "./ServiceDetailModal";
 import { Briefcase, Search, X, SlidersHorizontal, ChevronDown, Layers } from "lucide-react";
 import { gsap } from "gsap";
 
@@ -19,6 +20,7 @@ export function ServiceExplorer({ initialServices, categories, currentCategory }
     searchTerm: "",
   });
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<ServiceListing | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const prevFilterRef = useRef<string>("");
@@ -215,10 +217,21 @@ export function ServiceExplorer({ initialServices, categories, currentCategory }
           >
             {filteredServices.map((srv) => (
               <div key={srv.id} className="service-card-wrapper">
-                <ServiceCard service={srv} />
+                <ServiceCard 
+                  service={srv} 
+                  onSelect={(s) => setSelectedService(s)}
+                />
               </div>
             ))}
           </div>
+        )}
+
+        {/* Detail Modal */}
+        {selectedService && (
+          <ServiceDetailModal 
+            service={selectedService} 
+            onClose={() => setSelectedService(null)} 
+          />
         )}
       </div>
     </div>

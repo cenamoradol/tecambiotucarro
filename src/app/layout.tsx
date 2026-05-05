@@ -24,6 +24,7 @@ export const metadata: Metadata = {
 };
 
 import FloatingAd from "@/components/home/FloatingAd";
+// import TakeoverAd from "@/components/ads/TakeoverAd";
 
 export default async function RootLayout({
   children,
@@ -57,6 +58,7 @@ export default async function RootLayout({
           {children}
         </MainLayoutClient>
         <FloatingAd />
+        {/* <TakeoverAd /> */}
       </body>
     </html>
   );
