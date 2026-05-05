@@ -102,7 +102,7 @@ export default function FloatingAd() {
             ref={bannerRef}
             className="fixed bottom-0 left-0 w-full z-[100] p-4 hidden justify-center opacity-0 translate-y-10"
         >
-            <div className="relative max-w-3xl w-full bg-white dark:bg-slate-900 rounded-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.15)] dark:shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border border-slate-200 dark:border-slate-800 overflow-hidden group">
+            <div className="relative max-w-3xl w-full bg-white rounded-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.15)] border border-slate-200 overflow-hidden group">
 
                 {/* Close Button - More prominence for floating ad */}
                 <button

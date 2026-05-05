@@ -22,7 +22,7 @@ export default async function ServiciosPage(props: {
   ]);
 
   return (
-    <div className="bg-[#fcfcfd] dark:bg-slate-950 min-h-screen pb-24">
+    <div className="bg-[#fcfcfd] min-h-screen pb-24">
       {/* Hero Section — Compact */}
 
 
@@ -35,7 +35,7 @@ export default async function ServiciosPage(props: {
 
       {/* Modern Newsletter/CTA Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-32">
-        <div className="bg-background-dark dark:bg-primary-dark rounded-[3rem] p-8 md:p-16 text-center relative overflow-hidden group">
+        <div className="bg-background-dark rounded-[3rem] p-8 md:p-16 text-center relative overflow-hidden group">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 -translate-y-1/2 translate-x-1/2 rounded-full blur-3xl" />
           <h2 className="text-3xl md:text-5xl font-black text-white mb-6 relative z-10">
             ¿Eres dueño de un negocio?

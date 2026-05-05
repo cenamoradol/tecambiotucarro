@@ -105,15 +105,15 @@ export function ServiceExplorer({ initialServices, categories, currentCategory }
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setMobileFiltersOpen(false)}
           />
-          <div className="absolute bottom-0 left-0 right-0 bg-white dark:bg-slate-900 rounded-t-3xl p-6 max-h-[85vh] overflow-y-auto animate-slide-up">
+          <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-3xl p-6 max-h-[85vh] overflow-y-auto animate-slide-up">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
                 <SlidersHorizontal className="w-5 h-5 text-primary" />
                 Filtros
               </h2>
               <button
                 onClick={() => setMobileFiltersOpen(false)}
-                className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900"
+                className="p-2 rounded-xl bg-slate-100 text-slate-500 hover:text-slate-900"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -133,7 +133,7 @@ export function ServiceExplorer({ initialServices, categories, currentCategory }
                   onChange={(e) =>
                     setFilters((prev) => ({ ...prev, searchTerm: e.target.value }))
                   }
-                  className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-900 dark:text-white rounded-xl py-3 pl-4 pr-10 focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all placeholder:text-slate-400"
+                  className="w-full bg-slate-50 border border-slate-200 text-sm font-medium text-slate-900 rounded-xl py-3 pl-4 pr-10 focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all placeholder:text-slate-400"
                 />
                 {filters.searchTerm && (
                   <button
@@ -158,7 +158,7 @@ export function ServiceExplorer({ initialServices, categories, currentCategory }
                   onChange={(e) =>
                     setFilters((prev) => ({ ...prev, category: e.target.value }))
                   }
-                  className="w-full appearance-none bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-sm font-bold text-slate-900 dark:text-white rounded-xl py-3 pl-4 pr-10 focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none cursor-pointer transition-all"
+                  className="w-full appearance-none bg-slate-50 border border-slate-200 text-sm font-bold text-slate-900 rounded-xl py-3 pl-4 pr-10 focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none cursor-pointer transition-all"
                 >
                   <option value="">Todas las categorías</option>
                   {categories.map((cat) => (
@@ -186,10 +186,10 @@ export function ServiceExplorer({ initialServices, categories, currentCategory }
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+            <h2 className="text-2xl font-bold text-slate-900 mb-1">
               Directorio de Emprendedores
             </h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">
+            <p className="text-sm text-slate-500 font-medium">
               Mostrando {filteredServices.length} de {initialServices.length} servicios
             </p>
           </div>
@@ -197,11 +197,11 @@ export function ServiceExplorer({ initialServices, categories, currentCategory }
 
         {/* Grid */}
         {filteredServices.length === 0 ? (
-          <div className="text-center py-32 bg-white dark:bg-slate-900/50 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
-            <div className="w-24 h-24 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="text-center py-32 bg-white rounded-3xl border border-slate-100 shadow-sm">
+            <div className="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
               <Briefcase className="h-10 w-10 text-slate-300" />
             </div>
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+            <h3 className="text-2xl font-bold text-slate-900">
               {filters.searchTerm ? "No hay coincidencias" : "Sin resultados"}
             </h3>
             <p className="text-slate-500 mt-3 max-w-md mx-auto font-medium">

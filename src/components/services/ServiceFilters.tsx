@@ -44,7 +44,7 @@ export function ServiceFilters({ categories, currentCategory, onSearch }: Props)
   };
 
   return (
-    <div className="sticky top-20 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-y border-slate-200 dark:border-slate-800 py-4 mb-12">
+    <div className="sticky top-20 z-40 bg-white/80 backdrop-blur-xl border-y border-slate-200 py-4 mb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         
         {/* Search Bar */}
@@ -55,7 +55,7 @@ export function ServiceFilters({ categories, currentCategory, onSearch }: Props)
           <input
             type="text"
             placeholder="Buscar por nombre o servicio..."
-            className="block w-full pl-11 pr-12 py-3 bg-slate-100 dark:bg-slate-800/50 border-none rounded-2xl focus:ring-2 focus:ring-blue-500/20 text-slate-900 dark:text-white placeholder-slate-400 transition-all outline-none"
+            className="block w-full pl-11 pr-12 py-3 bg-slate-100 border-none rounded-2xl focus:ring-2 focus:ring-blue-500/20 text-slate-900 placeholder-slate-400 transition-all outline-none"
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
@@ -68,7 +68,7 @@ export function ServiceFilters({ categories, currentCategory, onSearch }: Props)
                 clearSearch();
                 onSearch("");
               }}
-              className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+              className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600"
             >
               <X className="h-5 w-5" />
             </button>
@@ -84,7 +84,7 @@ export function ServiceFilters({ categories, currentCategory, onSearch }: Props)
             {/* Sliding Indicator Background */}
             <div 
               ref={indicatorRef}
-              className="absolute h-10 bg-blue-600 dark:bg-blue-500 rounded-full z-0 top-0 shadow-lg shadow-blue-500/20"
+              className="absolute h-10 bg-blue-600 rounded-full z-0 top-0 shadow-lg shadow-blue-500/20"
               style={{ width: 0 }}
             />
 
@@ -92,7 +92,7 @@ export function ServiceFilters({ categories, currentCategory, onSearch }: Props)
               href="/servicios"
               ref={!currentCategory ? activeTabRef : null}
               className={`relative z-10 px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors duration-300 ${
-                !currentCategory ? "text-white" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                !currentCategory ? "text-white" : "text-slate-600 hover:text-slate-900"
               }`}
             >
               Todos los Servicios
@@ -104,7 +104,7 @@ export function ServiceFilters({ categories, currentCategory, onSearch }: Props)
                 href={`/servicios?category=${cat.slug}`}
                 ref={currentCategory === cat.slug ? activeTabRef : null}
                 className={`relative z-10 px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors duration-300 ${
-                  currentCategory === cat.slug ? "text-white" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                  currentCategory === cat.slug ? "text-white" : "text-slate-600 hover:text-slate-900"
                 }`}
               >
                 {cat.name}

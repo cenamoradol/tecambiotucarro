@@ -34,9 +34,9 @@ export function ServiceFiltersSidebar({
     <aside className="hidden lg:block w-[280px] shrink-0">
       <div className="sticky top-28 flex flex-col gap-6">
         {/* Main Filter Card */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 dark:border-slate-800">
+        <div className="bg-white rounded-2xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
               <Filter className="w-5 h-5 text-primary" />
               Filtros
               {activeFiltersCount > 0 && (
@@ -55,7 +55,7 @@ export function ServiceFiltersSidebar({
 
           {/* Search */}
           <div className="space-y-3 mb-6">
-            <h3 className="text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest flex items-center gap-2">
+            <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
               <Search className="w-3.5 h-3.5" />
               Buscar
             </h3>
@@ -67,7 +67,7 @@ export function ServiceFiltersSidebar({
                 onChange={(e) =>
                   setFilters((prev) => ({ ...prev, searchTerm: e.target.value }))
                 }
-                className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-900 dark:text-white rounded-xl py-3 pl-4 pr-10 focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all placeholder:text-slate-400"
+                className="w-full bg-slate-50 border border-slate-200 text-sm font-medium text-slate-900 rounded-xl py-3 pl-4 pr-10 focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all placeholder:text-slate-400"
               />
               {filters.searchTerm && (
                 <button
@@ -81,11 +81,11 @@ export function ServiceFiltersSidebar({
           </div>
 
           {/* Divider */}
-          <div className="h-px bg-slate-100 dark:bg-slate-800 mb-6" />
+          <div className="h-px bg-slate-100 mb-6" />
 
           {/* Category */}
           <div className="space-y-3 mb-2">
-            <h3 className="text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest flex items-center gap-2">
+            <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
               <Layers className="w-3.5 h-3.5" />
               Categoría
             </h3>
@@ -95,7 +95,7 @@ export function ServiceFiltersSidebar({
                 onChange={(e) =>
                   setFilters((prev) => ({ ...prev, category: e.target.value }))
                 }
-                className="w-full appearance-none bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-sm font-bold text-slate-900 dark:text-white rounded-xl py-3 pl-4 pr-10 focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none cursor-pointer transition-all"
+                className="w-full appearance-none bg-slate-50 border border-slate-200 text-sm font-bold text-slate-900 rounded-xl py-3 pl-4 pr-10 focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none cursor-pointer transition-all"
               >
                 <option value="">Todas las categorías</option>
                 {categories.map((cat) => (
