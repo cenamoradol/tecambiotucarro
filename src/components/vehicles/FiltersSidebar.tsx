@@ -4,6 +4,7 @@ import { Filter, ChevronDown } from 'lucide-react';
 export interface FilterState {
     brand: string;
     model: string;
+    vehicleType: string;
     maxPrice: number;
     minYear: number;
 }
@@ -13,14 +14,16 @@ interface FiltersSidebarProps {
     setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
     availableBrands: string[];
     availableModels: string[];
+    availableVehicleTypes: string[];
     maxPriceLimit: number;
 }
 
-export default function FiltersSidebar({ filters, setFilters, availableBrands, availableModels, maxPriceLimit }: FiltersSidebarProps) {
+export default function FiltersSidebar({ filters, setFilters, availableBrands, availableModels, availableVehicleTypes, maxPriceLimit }: FiltersSidebarProps) {
     const handleClear = () => {
         setFilters({
             brand: '',
             model: '',
+            vehicleType: '',
             maxPrice: maxPriceLimit,
             minYear: 1980
         });
@@ -74,6 +77,24 @@ export default function FiltersSidebar({ filters, setFilters, availableBrands, a
                                 <option value="">Todos los modelos</option>
                                 {availableModels.map(model => (
                                     <option key={model} value={model}>{model}</option>
+                                ))}
+                            </select>
+                            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" />
+                        </div>
+                    </div>
+
+                    {/* Tipo de Vehículo */}
+                    <div className="space-y-4 mb-8">
+                        <h3 className="text-sm font-bold text-text-muted uppercase tracking-wider">Tipo de Vehículo</h3>
+                        <div className="relative">
+                            <select
+                                value={filters.vehicleType}
+                                onChange={(e) => setFilters(prev => ({ ...prev, vehicleType: e.target.value }))}
+                                className="w-full appearance-none bg-background-light border border-gray-200 text-sm font-bold text-text-main rounded-lg py-3 pl-4 pr-10 shadow-sm focus:ring-1 focus:ring-primary focus:outline-none cursor-pointer"
+                            >
+                                <option value="">Todos los tipos</option>
+                                {availableVehicleTypes.map(type => (
+                                    <option key={type} value={type}>{type}</option>
                                 ))}
                             </select>
                             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" />

@@ -23,6 +23,7 @@ function ClearanceContent() {
     const [filters, setFilters] = useState<FilterState>({
         brand: '',
         model: '',
+        vehicleType: '',
         maxPrice: 2000000,
         minYear: 1980
     });
@@ -102,11 +103,16 @@ function ClearanceContent() {
                 .filter(Boolean)
         )).sort() as string[];
     }, [allVehicles, filters.brand]);
+    const availableVehicleTypes = useMemo(() => {
+        const types = allVehicles.map(v => typeof v.vehicleType === 'string' ? v.vehicleType : v.vehicleType?.name).filter(Boolean) as string[];
+        return Array.from(new Set(types)).sort();
+    }, [allVehicles]);
 
     const filteredVehicles = useMemo(() => {
         const filtered = allVehicles.filter(v => {
             const brandMatch = !filters.brand || v.brand?.name === filters.brand;
             const modelMatch = !filters.model || v.model?.name === filters.model;
+            const typeMatch = !filters.vehicleType || (typeof v.vehicleType === 'string' ? v.vehicleType === filters.vehicleType : v.vehicleType?.name === filters.vehicleType);
             const priceMatch = v.price <= filters.maxPrice;
             const yearMatch = v.year >= filters.minYear;
 
@@ -117,7 +123,7 @@ function ClearanceContent() {
                 (v.model?.name || '').toLowerCase().includes(searchLower) ||
                 (v.badge || '').toLowerCase().includes(searchLower);
 
-            return brandMatch && modelMatch && priceMatch && yearMatch && textMatch;
+            return brandMatch && modelMatch && typeMatch && priceMatch && yearMatch && textMatch;
         });
 
         return filtered.sort((a, b) => {
@@ -166,6 +172,7 @@ function ClearanceContent() {
                 setFilters={setFilters}
                 availableBrands={availableBrands}
                 availableModels={availableModels}
+                availableVehicleTypes={availableVehicleTypes}
                 maxPriceLimit={maxGlobalPrice}
             />
 

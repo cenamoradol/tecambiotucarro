@@ -12,9 +12,10 @@ interface Props {
   initialServices: ServiceListing[];
   categories: ServiceCategory[];
   currentCategory?: string;
+  storeId: string;
 }
 
-export function ServiceExplorer({ initialServices, categories, currentCategory }: Props) {
+export function ServiceExplorer({ initialServices, categories, currentCategory, storeId }: Props) {
   const [filters, setFilters] = useState<ServiceFilterState>({
     category: currentCategory || "",
     searchTerm: "",
@@ -230,6 +231,7 @@ export function ServiceExplorer({ initialServices, categories, currentCategory }
         {selectedService && (
           <ServiceDetailModal 
             service={selectedService} 
+            storeId={storeId}
             onClose={() => setSelectedService(null)} 
           />
         )}

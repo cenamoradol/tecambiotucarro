@@ -28,6 +28,7 @@ function CatalogContent() {
     const [filters, setFilters] = useState<FilterState>({
         brand: '',
         model: '',
+        vehicleType: '',
         maxPrice: 2000000,
         minYear: 1980
     });
@@ -127,11 +128,14 @@ function CatalogContent() {
         )).sort() as string[];
     }, [allVehicles, filters.brand]);
 
+    const availableVehicleTypes = useMemo(() => Array.from(new Set(allVehicles.map(v => v.vehicleType?.name).filter(Boolean))).sort() as string[], [allVehicles]);
+
     // Compute the filtered list
     const filteredVehicles = useMemo(() => {
         const filtered = allVehicles.filter(v => {
             const brandMatch = !filters.brand || v.brand?.name === filters.brand;
             const modelMatch = !filters.model || v.model?.name === filters.model;
+            const vehicleTypeMatch = !filters.vehicleType || v.vehicleType?.name === filters.vehicleType;
             const priceMatch = v.price <= filters.maxPrice;
             const yearMatch = v.year >= filters.minYear;
 
@@ -143,7 +147,7 @@ function CatalogContent() {
                 (v.model?.name || '').toLowerCase().includes(searchLower) ||
                 (v.badge || '').toLowerCase().includes(searchLower);
 
-            return brandMatch && modelMatch && priceMatch && yearMatch && textMatch;
+            return brandMatch && modelMatch && vehicleTypeMatch && priceMatch && yearMatch && textMatch;
         });
 
         return filtered.sort((a, b) => {
@@ -196,6 +200,7 @@ function CatalogContent() {
                 setFilters={setFilters}
                 availableBrands={availableBrands}
                 availableModels={availableModels}
+                availableVehicleTypes={availableVehicleTypes}
                 maxPriceLimit={maxGlobalPrice}
             />
 

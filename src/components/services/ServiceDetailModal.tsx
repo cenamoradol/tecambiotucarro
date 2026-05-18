@@ -1,19 +1,41 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { X, Phone, Mail, MapPin, Share2, MessageCircle } from "lucide-react";
-import { ServiceListing } from "@/api/services";
+import { ServiceListing, trackServiceWhatsappClick, trackServiceShareClick } from "@/api/services";
 import { gsap } from "gsap";
 
 interface Props {
   service: ServiceListing;
+  storeId: string;
   onClose: () => void;
 }
 
-export function ServiceDetailModal({ service, onClose }: Props) {
+export function ServiceDetailModal({ service, storeId, onClose }: Props) {
   const modalRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+
+  const handleWhatsappClick = useCallback(() => {
+    const message = "Vi tu anuncio en la pagina de te cambio tu carro";
+    const phone = service.phone?.replace(/[^0-9]/g, "") || "";
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+    trackServiceWhatsappClick(service.id);
+  }, [service.id, service.phone]);
+
+  const handleShareClick = useCallback(() => {
+    if (navigator.share) {
+      navigator.share({
+        title: service.name,
+        text: service.description || "",
+        url: window.location.href,
+      });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+    }
+    trackServiceShareClick(service.id);
+  }, [service.id, service.name, service.description]);
 
   useEffect(() => {
     const tl = gsap.timeline();
@@ -149,24 +171,15 @@ export function ServiceDetailModal({ service, onClose }: Props) {
 
           {/* Action Buttons */}
           <div className="grid grid-cols-2 gap-4 mt-auto pt-6 border-t border-slate-100 pb-4 md:pb-0">
-            <a
-              href={`https://wa.me/${service.phone?.replace(/[^0-9]/g, "")}`}
-              target="_blank"
+            <button
+              onClick={handleWhatsappClick}
               className="flex items-center justify-center gap-2 bg-[#25D366] text-white py-4 rounded-2xl font-black text-[11px] sm:text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-green-500/20"
             >
               <MessageCircle className="w-5 h-5" />
               WhatsApp
-            </a>
+            </button>
             <button
-              onClick={() => {
-                if (navigator.share) {
-                  navigator.share({
-                    title: service.name,
-                    text: service.description || "",
-                    url: window.location.href,
-                  });
-                }
-              }}
+              onClick={handleShareClick}
               className="flex items-center justify-center gap-2 bg-slate-900 text-white py-4 rounded-2xl font-black text-[11px] sm:text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg"
             >
               <Share2 className="w-5 h-5" />

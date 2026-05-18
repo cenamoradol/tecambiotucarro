@@ -14,6 +14,7 @@ export default async function ServiciosPage(props: {
 }) {
   const searchParams = await props.searchParams;
   const currentCategory = searchParams.category;
+  const storeId = process.env.NEXT_PUBLIC_STORE_ID || "";
 
   // Fetch all services (filtering is now client-side)
   const [servicios, categories] = await Promise.all([
@@ -31,6 +32,7 @@ export default async function ServiciosPage(props: {
         initialServices={servicios}
         categories={categories}
         currentCategory={currentCategory}
+        storeId={storeId}
       />
 
       {/* Modern Newsletter/CTA Section */}

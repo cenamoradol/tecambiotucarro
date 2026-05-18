@@ -65,3 +65,31 @@ export async function getServiceCategories(): Promise<ServiceCategory[]> {
     return [];
   }
 }
+
+export async function trackServiceWhatsappClick(serviceId: string): Promise<void> {
+  const storeId = process.env.NEXT_PUBLIC_STORE_ID;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  if (!storeId || !baseUrl) return;
+
+  try {
+    await fetch(`${baseUrl}/public/id/${storeId}/services/${serviceId}/whatsapp-click`, {
+      method: "POST",
+    });
+  } catch (e) {
+    console.error("Error tracking whatsapp click", e);
+  }
+}
+
+export async function trackServiceShareClick(serviceId: string): Promise<void> {
+  const storeId = process.env.NEXT_PUBLIC_STORE_ID;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  if (!storeId || !baseUrl) return;
+
+  try {
+    await fetch(`${baseUrl}/public/id/${storeId}/services/${serviceId}/share-click`, {
+      method: "POST",
+    });
+  } catch (e) {
+    console.error("Error tracking share click", e);
+  }
+}
