@@ -18,9 +18,9 @@ export default function TeamSection() {
                 <p className="text-slate-600 text-lg max-w-3xl mx-auto mb-16 leading-relaxed">
                     Con un equipo comprometido en brindar una atención eficiente y transparente, estamos preparados para asesorarte y acompañarte durante tu proceso de compra, venta o cambio de vehículo, garantizando una experiencia confiable y satisfactoria.
                 </p>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+                <div className="flex flex-wrap justify-center gap-8">
                     {team.map((member, index) => (
-                        <div key={index} className="space-y-4 group">
+                        <div key={index} className="w-[calc(50%-1rem)] md:w-[calc(20%-1.6rem)] space-y-4 group">
                             <div className="aspect-[9/16] bg-slate-200 rounded-3xl overflow-hidden flex items-center justify-center transform group-hover:-translate-y-2 transition-transform duration-300 shadow-lg group-hover:shadow-primary/20 relative">
                                 {member.image ? (
                                     <Image
