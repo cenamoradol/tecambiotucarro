@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { Users } from 'lucide-react';
 
 const team = [
-    { name: "Javier Enamorado", role: "Asesor de Ventas", image: "/vendedores/javier.webp" },
     { name: "Belizario Diaz", role: "Asesor de Ventas", image: "/vendedores/belizario.webp" },
     { name: "Gerson Martinez", role: "Asesor de Ventas", image: "/vendedores/gerson.webp" },
     { name: "Henry Rodriguez", role: "Asesor de Ventas", image: "/vendedores/henry.webp" },
