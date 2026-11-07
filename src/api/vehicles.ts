@@ -37,6 +37,21 @@ export async function fetchVehicle(publicId: string): Promise<Vehicle> {
     return data.vehicle;
 }
 
+export async function trackVehicleWhatsappClick(publicId: string): Promise<void> {
+    if (!publicId) return;
+
+    try {
+        // Va por el proxy same-origin del sitio (ver /api/track/whatsapp-click) para no depender del CORS del backend
+        await fetch('/api/track/whatsapp-click', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ publicId }),
+        });
+    } catch (e) {
+        console.error("Error tracking whatsapp click", e);
+    }
+}
+
 export function formatPrice(value: number | string, symbol = 'L', currency = 'HNL') {
     if (value === undefined || value === null) return '-';
     const num = typeof value === 'string' ? parseFloat(value) : value;

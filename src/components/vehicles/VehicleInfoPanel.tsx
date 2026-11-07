@@ -2,11 +2,50 @@
 
 import React from 'react';
 import { Vehicle } from '@/components/vehicles/VehicleCard';
-import { Clock, Gauge, Settings, Fuel, Calendar, Info, Palette, CarFront, Activity } from 'lucide-react';
-import { formatPrice } from '@/api/vehicles';
+import { Clock, Gauge, Settings, Fuel, Calendar, Info, Palette, CarFront, Activity, MessageCircle } from 'lucide-react';
+import { formatPrice, trackVehicleWhatsappClick } from '@/api/vehicles';
 
 interface VehicleInfoPanelProps {
     vehicle: Vehicle;
+}
+
+const WHATSAPP_NUMBER = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '50498023560').replace(/\D/g, '');
+
+function WhatsappCta({ vehicle }: { vehicle: Vehicle }) {
+    const reference = vehicle.publicId || String(vehicle.id);
+
+    const handleClick = () => {
+        const message = [
+            'Hola, me interesa este vehículo.',
+            `Referencia: ${reference}`,
+            [vehicle.title, vehicle.year].filter(Boolean).join(' - '),
+            window.location.href,
+        ].join('\n');
+
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+
+        if (typeof window !== 'undefined' && (window as any).dataLayer) {
+            (window as any).dataLayer.push({
+                event: 'contact_click',
+                button_location: 'vehicle_detail_cta',
+                action: 'whatsapp_contact',
+                vehicle_ref: reference,
+            });
+        }
+
+        trackVehicleWhatsappClick(reference);
+    };
+
+    return (
+        <button
+            type="button"
+            onClick={handleClick}
+            className="w-full h-14 rounded-full bg-whatsapp hover:bg-primary-dark text-white font-bold text-base lg:text-lg flex items-center justify-center gap-2 transition-colors shadow-lg shadow-primary/20"
+        >
+            <MessageCircle className="w-5 h-5" />
+            Me interesa este vehículo
+        </button>
+    );
 }
 
 function SpecCard({ icon: Icon, label, value }: { icon: any; label: string; value?: string | number | null }) {
@@ -69,6 +108,8 @@ export default function VehicleInfoPanel({ vehicle }: VehicleInfoPanelProps) {
                         </div>
                     )}
                 </div>
+
+                {vehicle.status !== 'SOLD' && <WhatsappCta vehicle={vehicle} />}
 
                 {specs.length > 0 && (
                     <div className="grid grid-cols-2 gap-3 lg:gap-4 lg:grid-cols-3">
