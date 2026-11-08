@@ -60,6 +60,7 @@ export default function Navbar() {
                                 src="/logotctc.webp"
                                 alt="Te Cambio Tu Carro Logo"
                                 fill
+                                sizes="160px"
                                 className="object-contain object-left"
                                 priority
                             />
@@ -133,6 +134,7 @@ export default function Navbar() {
                                         src="/logo.png"
                                         alt="Te Cambio Tu Carro Logo"
                                         fill
+                                        sizes="160px"
                                         className="object-contain object-left"
                                     />
                                 </div>

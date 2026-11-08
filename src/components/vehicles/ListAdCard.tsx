@@ -63,6 +63,7 @@ export default function ListAdCard({ ad, viewMode }: ListAdCardProps) {
                     src={ad.imageUrl}
                     alt={ad.title || 'Publicidad'}
                     fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     unoptimized={ad.imageUrl.endsWith('.gif')}
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />

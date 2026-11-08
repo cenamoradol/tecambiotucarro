@@ -29,7 +29,7 @@ export async function fetchClearanceVehicles(): Promise<Vehicle[]> {
 export async function fetchVehicle(publicId: string): Promise<Vehicle> {
     if (!STORE_ID) throw new Error('Store ID no configurado');
     const res = await fetch(`${API_BASE}/public/id/${STORE_ID}/vehicles/${publicId}`, {
-        next: { revalidate: 60 }
+        next: { revalidate: 300 }
     });
 
     if (!res.ok) throw new Error('Vehículo no encontrado');

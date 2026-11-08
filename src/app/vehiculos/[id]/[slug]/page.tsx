@@ -3,12 +3,31 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
-import { fetchVehicle, getImageUrl } from '@/api/vehicles';
+import { fetchVehicle, fetchVehicles, getImageUrl } from '@/api/vehicles';
 import VehicleGallery from '@/components/vehicles/VehicleGallery';
 import VehicleInfoPanel from '@/components/vehicles/VehicleInfoPanel';
+import { generateSlug } from '@/lib/utils';
 
 interface Props {
     params: Promise<{ id: string; slug: string }>;
+}
+
+// El HTML se cachea en el edge de Vercel (s-maxage=300, stale-while-revalidate).
+// Sin esto cada visita a una ficha era una invocacion de funcion + una llamada al backend.
+export const revalidate = 300;
+
+// Prerender de las fichas mas consultadas. El resto se genera on-demand
+// (dynamicParams) y tambien queda cacheado en el edge por el revalidate de arriba.
+export async function generateStaticParams() {
+    try {
+        const vehicles = await fetchVehicles();
+        return vehicles.slice(0, 40).map((v) => ({
+            id: v.publicId || String(v.id),
+            slug: generateSlug(v.title),
+        }));
+    } catch {
+        return [];
+    }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

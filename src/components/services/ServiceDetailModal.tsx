@@ -88,6 +88,7 @@ export function ServiceDetailModal({ service, storeId, onClose }: Props) {
               src={service.media[0].url}
               alt={service.name}
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
               priority
             />

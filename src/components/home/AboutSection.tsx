@@ -18,6 +18,7 @@ export default function AboutSection() {
                     src="/dorian.webp"
                     alt="Acerca de Te Cambio Tu Carro"
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
                 />
             </div>

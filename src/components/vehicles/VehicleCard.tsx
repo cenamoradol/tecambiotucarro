@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { MapPin } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn, generateSlug } from '@/lib/utils';
 import { getImageUrl, formatPrice } from '@/api/vehicles';
 
 export interface Vehicle {
@@ -41,9 +41,6 @@ export default function VehicleCard({ vehicle, viewMode = 'grid', currencySymbol
     const displayImage = vehicle.image || getImageUrl(vehicle);
     const displayLocation = vehicle.branch?.name || vehicle.location || 'Honduras';
     const routeId = vehicle.publicId || vehicle.id;
-    const generateSlug = (text: string) => {
-        return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
-    };
     const slug = generateSlug(vehicle.title);
 
     return (

@@ -192,6 +192,7 @@ export default function HeroSection({ slides = DEFAULT_SLIDES }: Props) {
                                     src={slide.src}
                                     alt={slide.alt || `Hero slide ${i + 1}`}
                                     fill
+                                    sizes="100vw"
                                     className="object-cover"
                                     priority={i === 0}
                                     unoptimized={slide.src.endsWith('.gif')}
@@ -202,6 +203,7 @@ export default function HeroSection({ slides = DEFAULT_SLIDES }: Props) {
                                 src={slide.src}
                                 alt={slide.alt || `Hero slide ${i + 1}`}
                                 fill
+                                sizes="100vw"
                                 className="object-cover"
                                 priority={i === 0}
                                 unoptimized={slide.src.endsWith('.gif')}

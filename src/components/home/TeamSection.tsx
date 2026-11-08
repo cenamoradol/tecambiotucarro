@@ -27,6 +27,7 @@ export default function TeamSection() {
                                         src={member.image}
                                         alt={member.name}
                                         fill
+                                        sizes="(max-width: 768px) 50vw, 20vw"
                                         className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                                     />
                                 ) : (

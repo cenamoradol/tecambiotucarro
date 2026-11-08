@@ -133,6 +133,7 @@ export default function VehicleGallery({ images }: VehicleGalleryProps) {
                             src={images[currentIndex]}
                             alt={`Vista del vehículo ${currentIndex + 1}`}
                             fill
+                            sizes="(max-width: 1024px) 100vw, 40vw"
                             className="object-cover transition-opacity duration-300"
                             priority
                         />
@@ -285,7 +286,7 @@ export default function VehicleGallery({ images }: VehicleGalleryProps) {
                                     onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); setScale(1); setPosition({ x: 0, y: 0 }); }}
                                     className={`relative w-12 h-12 rounded-lg overflow-hidden border-2 transition-all shrink-0 ${idx === currentIndex ? 'border-primary scale-110' : 'border-white/20 opacity-60 hover:opacity-100'}`}
                                 >
-                                    <Image src={img} alt={`Miniatura ${idx + 1}`} fill className="object-cover" />
+                                    <Image src={img} alt={`Miniatura ${idx + 1}`} fill sizes="48px" className="object-cover" />
                                 </button>
                             ))}
                         </div>
