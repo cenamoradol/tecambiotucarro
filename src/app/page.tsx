@@ -8,6 +8,7 @@ import TeamSection from '@/components/home/TeamSection';
 import ContactSection from '@/components/home/ContactSection';
 import HomeGSAPWrapper from '@/components/home/HomeGSAPWrapper';
 import { fetchAdvertisements } from '@/api/advertisements';
+import { HOME_BANNER_URL } from '@/lib/config';
 
 export default async function Home() {
   const allAds = await fetchAdvertisements();
@@ -15,7 +16,7 @@ export default async function Home() {
   
   // Base slider with default video
   const slides: HeroSlide[] = [
-    { type: 'video', src: '/banners/home-banner.mp4' },
+    { type: 'video', src: HOME_BANNER_URL },
     ...heroAds.map(ad => ({ 
       id: ad.id,
       type: ((ad.kind?.toLowerCase() === 'video') ? 'video' : 'image') as 'video' | 'image', 

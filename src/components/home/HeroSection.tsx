@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Volume2, VolumeX, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 import { trackAdClick, trackAdImpression } from '@/api/advertisements';
+import { HOME_BANNER_URL } from '@/lib/config';
 import Image from 'next/image';
 
 // ──────────────────────────────────────────────
@@ -18,7 +19,7 @@ export interface HeroSlide {
 }
 
 const DEFAULT_SLIDES: HeroSlide[] = [
-    { type: 'video', src: '/banners/home-banner.mp4' },
+    { type: 'video', src: HOME_BANNER_URL },
 ];
 
 const SLIDE_INTERVAL = 8000; // ms – time per slide (auto-advance)
