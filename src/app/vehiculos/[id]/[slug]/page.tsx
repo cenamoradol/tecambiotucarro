@@ -12,9 +12,11 @@ interface Props {
     params: Promise<{ id: string; slug: string }>;
 }
 
-// El HTML se cachea en el edge de Vercel (s-maxage=300, stale-while-revalidate).
+// El HTML se cachea en el edge de Vercel (s-maxage, stale-while-revalidate).
 // Sin esto cada visita a una ficha era una invocacion de funcion + una llamada al backend.
-export const revalidate = 300;
+// 1 hora: los datos casi no cambian (se suben ~3 vehiculos por semana) y hay refresco
+// manual desde el CRM (POST /api/revalidate) para cuando haya que refrescar al instante.
+export const revalidate = 3600;
 
 // Prerender de las fichas mas consultadas. El resto se genera on-demand
 // (dynamicParams) y tambien queda cacheado en el edge por el revalidate de arriba.
